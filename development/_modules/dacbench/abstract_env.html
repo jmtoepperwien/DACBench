@@ -359,7 +359,7 @@
         <span class="c1"># TODO: use dicts by default for actions and observations</span>
         <span class="c1"># The config could change this for RL purposes</span>
         <span class="k">if</span> <span class="s2">&quot;config_space&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
-            <span class="n">actions</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;config_space&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_hyperparameters</span><span class="p">()</span>
+            <span class="n">actions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;config_space&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
             <span class="n">action_types</span> <span class="o">=</span> <span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">]</span>
 
             <span class="c1"># Uniform action space</span>
