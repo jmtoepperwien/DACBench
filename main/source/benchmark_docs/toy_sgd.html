@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The ToySGD Benchmark &#8212; DACBench Documentation 0.2.0 documentation</title>
+    <title>The ToySGD Benchmark &#8212; DACBench Documentation 0.3.0 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ac9c05f7c49ca1e1f876c6e36360ea26.css" rel="stylesheet">
@@ -23,17 +22,17 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=f129cdf0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="The Geometric Toy Benchmark" href="geometric.html" />
+    <link rel="next" title="The Theory Benchmark" href="theory.html" />
     <link rel="prev" title="The Luby Toy Benchmark" href="luby.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -92,11 +91,11 @@
         <div class="dropdown mt-1">
     <button type="button" class="btn btn-secondary btn-md navbar-btn dropdown-toggle" id="dLabelMore"
         data-toggle="dropdown">
-        v0.2.0
+        v0.3.0
         <span class="caret"></span>
     </button>
     <div class="dropdown-menu list-group-flush py-0" aria-labelledby="dLabelMore">
-        <a class="list-group-item list-group-item-action" href="#">v0.2.0</a>
+        <a class="list-group-item list-group-item-action" href="#">v0.3.0</a>
     </div>
 </div>
       </div>
@@ -121,7 +120,7 @@
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
             <div class="col-12 col-md-3 bd-sidebar"><h4 class="mt-0 mb-0"><a href="../../index.html">DACBench Documentation</a></h4>
-<div class="mb-3">v0.2.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+<div class="mb-3">v0.3.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -157,8 +156,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="sigmoid.html">
-   The Sigmoid Toy Benchmark
+  <a class="reference internal" href="function_approximation.html">
+   The Function Approximation Toy Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -172,28 +171,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="geometric.html">
-   The Geometric Toy Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="fastdownward.html">
-   The FastDownward Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="theory.html">
    The Theory Benchmark
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cma.html">
-   The PyCMA CMA-ES Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="modcma.html">
-   The IOHProfiler ModCMA Benchmark
+   The CMA-ES Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -314,15 +298,6 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dacbench.envs.toysgd.ToySGDEnv.build_objective_function">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       ToySGDEnv.build_objective_function()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dacbench.envs.toysgd.ToySGDEnv.close">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -332,10 +307,19 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dacbench.envs.toysgd.ToySGDEnv.get_initial_position">
+    <a class="reference internal nav-link" href="#dacbench.envs.toysgd.ToySGDEnv.get_default_reward">
      <code class="docutils literal notranslate">
       <span class="pre">
-       ToySGDEnv.get_initial_position()
+       ToySGDEnv.get_default_reward()
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dacbench.envs.toysgd.ToySGDEnv.get_default_state">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ToySGDEnv.get_default_state()
       </span>
      </code>
     </a>
@@ -370,19 +354,10 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dacbench.envs.toysgd.create_polynomial_instance_set">
+  <a class="reference internal nav-link" href="#dacbench.envs.toysgd.ToySGDInstance">
    <code class="docutils literal notranslate">
     <span class="pre">
-     create_polynomial_instance_set()
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dacbench.envs.toysgd.sample_coefficients">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     sample_coefficients()
+     ToySGDInstance
     </span>
    </code>
   </a>
@@ -409,7 +384,7 @@
               <div>
                 
   <section id="the-toysgd-benchmark">
-<span id="toysgd"></span><h1>The ToySGD Benchmark<a class="headerlink" href="#the-toysgd-benchmark" title="Permalink to this heading">¶</a></h1>
+<span id="toysgd"></span><h1>The ToySGD Benchmark<a class="headerlink" href="#the-toysgd-benchmark" title="Link to this heading">¶</a></h1>
 <div class="line-block">
 <div class="line"><strong>Task:</strong> control the learning rate and momentum of SGD in simple function approximation</div>
 <div class="line"><strong>Cost:</strong> log regret</div>
@@ -423,35 +398,34 @@ At each step until the cutoff, both hyperparameters are updated and one optimiza
 As we know the global optimum of the function, the cost is measured as the current regret.</p>
 <p>By using function approximation, this benchmark is computationally cheap, so likely a good entry point before tackling the full-sizes SGD or CMA-ES step size benchmarks.
 It can also serve as a first test whether a DAC method can handle multiple hyperparameters at the same time.</p>
-<span class="target" id="module-dacbench.benchmarks.toysgd_benchmark"></span><dl class="py class">
+<p id="module-dacbench.benchmarks.toysgd_benchmark">Benchmark for Toysgd.</p>
+<dl class="py class">
 <dt class="sig sig-object py" id="dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.benchmarks.toysgd_benchmark.</span></span><span class="sig-name descname"><span class="pre">ToySGDBenchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/toysgd_benchmark.html#ToySGDBenchmark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.benchmarks.toysgd_benchmark.</span></span><span class="sig-name descname"><span class="pre">ToySGDBenchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/toysgd_benchmark.html#ToySGDBenchmark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark" title="dacbench.abstract_benchmark.AbstractBenchmark"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractBenchmark</span></code></a></p>
+<p>SGD Benchmark with toy functions.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.get_environment">
-<span class="sig-name descname"><span class="pre">get_environment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/toysgd_benchmark.html#ToySGDBenchmark.get_environment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.get_environment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return SGDEnv env with current configuration</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>SGD environment</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="sgd.html#dacbench.envs.sgd.SGDEnv" title="dacbench.envs.sgd.SGDEnv">SGDEnv</a></p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">get_environment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/toysgd_benchmark.html#ToySGDBenchmark.get_environment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.get_environment" title="Link to this definition">¶</a></dt>
+<dd><p>Return SGDEnv env with current configuration.</p>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<p>ToySGDEnv: ToySGD environment</p>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.read_instance_set">
-<span class="sig-name descname"><span class="pre">read_instance_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/toysgd_benchmark.html#ToySGDBenchmark.read_instance_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.read_instance_set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read path of instances from config into list</p>
+<span class="sig-name descname"><span class="pre">read_instance_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/toysgd_benchmark.html#ToySGDBenchmark.read_instance_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.read_instance_set" title="Link to this definition">¶</a></dt>
+<dd><p>Read path of instances from config into list.</p>
 </dd></dl>
 
 </dd></dl>
 
-<span class="target" id="module-dacbench.envs.toysgd"></span><dl class="py class">
+<p id="module-dacbench.envs.toysgd">Environment for sgd with toy functions.</p>
+<dl class="py class">
 <dt class="sig sig-object py" id="dacbench.envs.toysgd.ToySGDEnv">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.envs.toysgd.</span></span><span class="sig-name descname"><span class="pre">ToySGDEnv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.envs.toysgd.</span></span><span class="sig-name descname"><span class="pre">ToySGDEnv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../multi_agent_dac.html#dacbench.abstract_env.AbstractMADACEnv" title="dacbench.abstract_env.AbstractMADACEnv"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractMADACEnv</span></code></a></p>
 <p>Optimize toy functions with SGD + Momentum.</p>
 <p>Action: [log_learning_rate, log_momentum] (log base 10)
@@ -465,63 +439,62 @@ low                                                -2
 high                                                2
 coefficients    [ 1.40501053 -0.59899755  1.43337392]</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="dacbench.envs.toysgd.ToySGDEnv.build_objective_function">
-<span class="sig-name descname"><span class="pre">build_objective_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.build_objective_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.build_objective_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make base function.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.toysgd.ToySGDEnv.close">
-<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.close" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.close" title="Link to this definition">¶</a></dt>
 <dd><p>Close env.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dacbench.envs.toysgd.ToySGDEnv.get_initial_position">
-<span class="sig-name descname"><span class="pre">get_initial_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.get_initial_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.get_initial_position" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get initial position.</p>
+<dt class="sig sig-object py" id="dacbench.envs.toysgd.ToySGDEnv.get_default_reward">
+<span class="sig-name descname"><span class="pre">get_default_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.get_default_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.get_default_reward" title="Link to this definition">¶</a></dt>
+<dd><p>Default reward: negative log regret.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dacbench.envs.toysgd.ToySGDEnv.get_default_state">
+<span class="sig-name descname"><span class="pre">get_default_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.get_default_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.get_default_state" title="Link to this definition">¶</a></dt>
+<dd><p>Default state: remaining_budget, gradient, learning_rate, momentum.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.toysgd.ToySGDEnv.render">
-<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.render" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.render" title="Link to this definition">¶</a></dt>
 <dd><p>Render progress.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.toysgd.ToySGDEnv.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.reset" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.reset" title="Link to this definition">¶</a></dt>
 <dd><p>Reset environment.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>seed</strong> (<em>int</em>) – seed</p></li>
 <li><p><strong>options</strong> (<em>dict</em>) – options dict (not used)</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>np.array</strong> – Environment state</p></li>
+<li><p><strong>dict</strong> – Meta-info</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><em>np.array</em> – Environment state</p></li>
-<li><p><em>dict</em> – Meta-info</p></li>
-</ul>
-</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.toysgd.ToySGDEnv.step">
-<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.step" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDEnv.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDEnv.step" title="Link to this definition">¶</a></dt>
 <dd><p>Take one step with SGD.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>action</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>]</em>) – If scalar, action = (log_learning_rate)
-If tuple, action = (log_learning_rate, log_momentum)</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>]</em>) – If scalar, action = (log_learning_rate)
+If tuple, action = (log_learning_rate, log_momentum)</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>Tuple</strong><strong>[</strong><strong>Dict</strong><strong>[</strong><strong>str</strong> – <ul>
 <li><dl class="simple">
-<dt>state<span class="classifier">Dict[str, float]</span></dt><dd><p>State with entries “remaining_budget”, “gradient”, “learning_rate”, “momentum”</p>
+<dt>state<span class="classifier">Dict[str, float]</span></dt><dd><p>State with entries:
+“remaining_budget”, “gradient”, “learning_rate”, “momentum”</p>
 </dd>
 </dl>
 </li>
@@ -530,26 +503,71 @@ If tuple, action = (log_learning_rate, log_momentum)</p>
 <li><p>truncated : bool</p></li>
 <li><p>info : Dict</p></li>
 </ul>
-</p>
+</p></li>
+<li><p><strong>float</strong><strong>]</strong> – <ul>
+<li><dl class="simple">
+<dt>state<span class="classifier">Dict[str, float]</span></dt><dd><p>State with entries:
+“remaining_budget”, “gradient”, “learning_rate”, “momentum”</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[Dict[str, float], float, bool, Dict]</p>
+</dl>
+</li>
+<li><p>reward : float</p></li>
+<li><p>terminated : bool</p></li>
+<li><p>truncated : bool</p></li>
+<li><p>info : Dict</p></li>
+</ul>
+</p></li>
+<li><p><strong>float</strong> – <ul>
+<li><dl class="simple">
+<dt>state<span class="classifier">Dict[str, float]</span></dt><dd><p>State with entries:
+“remaining_budget”, “gradient”, “learning_rate”, “momentum”</p>
+</dd>
+</dl>
+</li>
+<li><p>reward : float</p></li>
+<li><p>terminated : bool</p></li>
+<li><p>truncated : bool</p></li>
+<li><p>info : Dict</p></li>
+</ul>
+</p></li>
+<li><p><strong>bool</strong> – <ul>
+<li><dl class="simple">
+<dt>state<span class="classifier">Dict[str, float]</span></dt><dd><p>State with entries:
+“remaining_budget”, “gradient”, “learning_rate”, “momentum”</p>
+</dd>
+</dl>
+</li>
+<li><p>reward : float</p></li>
+<li><p>terminated : bool</p></li>
+<li><p>truncated : bool</p></li>
+<li><p>info : Dict</p></li>
+</ul>
+</p></li>
+<li><p><strong>Dict</strong><strong>]</strong> – <ul>
+<li><dl class="simple">
+<dt>state<span class="classifier">Dict[str, float]</span></dt><dd><p>State with entries:
+“remaining_budget”, “gradient”, “learning_rate”, “momentum”</p>
+</dd>
+</dl>
+</li>
+<li><p>reward : float</p></li>
+<li><p>terminated : bool</p></li>
+<li><p>truncated : bool</p></li>
+<li><p>info : Dict</p></li>
+</ul>
+</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="dacbench.envs.toysgd.create_polynomial_instance_set">
-<span class="sig-prename descclassname"><span class="pre">dacbench.envs.toysgd.</span></span><span class="sig-name descname"><span class="pre">create_polynomial_instance_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#create_polynomial_instance_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.create_polynomial_instance_set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make instance set.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="dacbench.envs.toysgd.sample_coefficients">
-<span class="sig-prename descclassname"><span class="pre">dacbench.envs.toysgd.</span></span><span class="sig-name descname"><span class="pre">sample_coefficients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#sample_coefficients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.sample_coefficients" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sample function coefficients.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dacbench.envs.toysgd.ToySGDInstance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.envs.toysgd.</span></span><span class="sig-name descname"><span class="pre">ToySGDInstance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractFunction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/toysgd.html#ToySGDInstance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.toysgd.ToySGDInstance" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Toy SGD Instance.</p>
 </dd></dl>
 
 </section>
@@ -567,10 +585,10 @@ If tuple, action = (log_learning_rate, log_momentum)</p>
             <p class="prev-next-title">The Luby Toy Benchmark</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="geometric.html" title="next page">
+    <a class='right-next' id="next-link" href="theory.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The Geometric Toy Benchmark</p>
+        <p class="prev-next-title">The Theory Benchmark</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -595,7 +613,7 @@ If tuple, action = (log_learning_rate, log_momentum)</p>
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-6.1.3. Template is modified version of <a
+8.0.2. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

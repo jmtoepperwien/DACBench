@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The FastDownward Benchmark &#8212; DACBench Documentation 0.2.0 documentation</title>
+    <title>The FastDownward Benchmark &#8212; DACBench Documentation 0.3.0 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ac9c05f7c49ca1e1f876c6e36360ea26.css" rel="stylesheet">
@@ -23,18 +22,16 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=f129cdf0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="The Theory Benchmark" href="theory.html" />
-    <link rel="prev" title="The Geometric Toy Benchmark" href="geometric.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -92,11 +89,11 @@
         <div class="dropdown mt-1">
     <button type="button" class="btn btn-secondary btn-md navbar-btn dropdown-toggle" id="dLabelMore"
         data-toggle="dropdown">
-        v0.2.0
+        v0.3.0
         <span class="caret"></span>
     </button>
     <div class="dropdown-menu list-group-flush py-0" aria-labelledby="dLabelMore">
-        <a class="list-group-item list-group-item-action" href="#">v0.2.0</a>
+        <a class="list-group-item list-group-item-action" href="#">v0.3.0</a>
     </div>
 </div>
       </div>
@@ -121,7 +118,7 @@
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
             <div class="col-12 col-md-3 bd-sidebar"><h4 class="mt-0 mb-0"><a href="../../index.html">DACBench Documentation</a></h4>
-<div class="mb-3">v0.2.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+<div class="mb-3">v0.3.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -150,15 +147,15 @@
   The Benchmarks:
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../benchmarks.html">
    Benchmark Overview
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="sigmoid.html">
-   The Sigmoid Toy Benchmark
+  <a class="reference internal" href="function_approximation.html">
+   The Function Approximation Toy Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -172,28 +169,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="geometric.html">
-   The Geometric Toy Benchmark
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   The FastDownward Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="theory.html">
    The Theory Benchmark
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cma.html">
-   The PyCMA CMA-ES Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="modcma.html">
-   The IOHProfiler ModCMA Benchmark
+   The CMA-ES Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -276,44 +258,6 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     FastDownwardBenchmark
-    </span>
-   </code>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark.get_benchmark">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       FastDownwardBenchmark.get_benchmark()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark.get_environment">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       FastDownwardBenchmark.get_environment()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark.read_instance_set">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       FastDownwardBenchmark.read_instance_set()
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dacbench.envs.fast_downward.FastDownwardEnv">
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -336,6 +280,15 @@
      <code class="docutils literal notranslate">
       <span class="pre">
        FastDownwardEnv.kill_connection()
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dacbench.envs.fast_downward.FastDownwardEnv.port">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       FastDownwardEnv.port
       </span>
      </code>
     </a>
@@ -427,7 +380,7 @@
               <div>
                 
   <section id="the-fastdownward-benchmark">
-<span id="fastdownward"></span><h1>The FastDownward Benchmark<a class="headerlink" href="#the-fastdownward-benchmark" title="Permalink to this heading">¶</a></h1>
+<span id="fastdownward"></span><h1>The FastDownward Benchmark<a class="headerlink" href="#the-fastdownward-benchmark" title="Link to this heading">¶</a></h1>
 <div class="line-block">
 <div class="line"><strong>Task:</strong> select heuristics for the FastDownward planner</div>
 <div class="line"><strong>Cost:</strong> number of optimization steps</div>
@@ -443,145 +396,102 @@ The goal is to reduce the runtime of the planner, so every step that is taken in
 <p>Out of our real-world benchmarks, FastDownward is likely the fastest running and it has been shown to be suitable to dynamic configuration.
 Though the noise level is fairly high, most DAC controllers should be able to learn functional policies in a comparatively short time frame.</p>
 <p><em>The FastDownward benchmark was constructed by Speck et al. for the paper `”Learning Heuristic Selection with Dynamic Algorithm Configuration” &lt;https://arxiv.org/pdf/2006.08246.pdf&gt;`_ at ICAPS 2021</em></p>
-<span class="target" id="module-dacbench.benchmarks.fast_downward_benchmark"></span><dl class="py class">
-<dt class="sig sig-object py" id="dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.benchmarks.fast_downward_benchmark.</span></span><span class="sig-name descname"><span class="pre">FastDownwardBenchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/fast_downward_benchmark.html#FastDownwardBenchmark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark" title="dacbench.abstract_benchmark.AbstractBenchmark"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractBenchmark</span></code></a></p>
-<p>Benchmark with default configuration &amp; relevant functions for Sigmoid</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark.get_benchmark">
-<span class="sig-name descname"><span class="pre">get_benchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/fast_downward_benchmark.html#FastDownwardBenchmark.get_benchmark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark.get_benchmark" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get published benchmark</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>seed</strong> (<em>int</em>) – Environment seed</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>env</strong> – FD environment</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#dacbench.envs.fast_downward.FastDownwardEnv" title="dacbench.envs.fast_downward.FastDownwardEnv">FastDownwardEnv</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark.get_environment">
-<span class="sig-name descname"><span class="pre">get_environment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/fast_downward_benchmark.html#FastDownwardBenchmark.get_environment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark.get_environment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return Luby env with current configuration</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Luby environment</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="luby.html#dacbench.envs.luby.LubyEnv" title="dacbench.envs.luby.LubyEnv">LubyEnv</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark.read_instance_set">
-<span class="sig-name descname"><span class="pre">read_instance_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/fast_downward_benchmark.html#FastDownwardBenchmark.read_instance_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.fast_downward_benchmark.FastDownwardBenchmark.read_instance_set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read paths of instances from config into list</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-dacbench.envs.fast_downward"></span><p>Planning environment from
+<p id="module-dacbench.envs.fast_downward">Planning environment from
 “Learning Heuristic Selection with Dynamic Algorithm Configuration”
 by David Speck, André Biedenkapp, Frank Hutter, Robert Mattmüller und Marius Lindauer.
-Original environment authors: David Speck, André Biedenkapp</p>
+Original environment authors: David Speck, André Biedenkapp.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="dacbench.envs.fast_downward.FastDownwardEnv">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.envs.fast_downward.</span></span><span class="sig-name descname"><span class="pre">FastDownwardEnv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.envs.fast_downward.</span></span><span class="sig-name descname"><span class="pre">FastDownwardEnv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../multi_agent_dac.html#dacbench.abstract_env.AbstractEnv" title="dacbench.abstract_env.AbstractEnv"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEnv</span></code></a></p>
-<p>Environment to control Solver Heuristics of FastDownward</p>
+<p>Environment to control Solver Heuristics of FastDownward.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.fast_downward.FastDownwardEnv.close">
-<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.close" title="Permalink to this definition">¶</a></dt>
-<dd><p>Close Env</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Closing confirmation</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.close" title="Link to this definition">¶</a></dt>
+<dd><p>Close Env.</p>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>bool</dt><dd><p>Closing confirmation</p>
 </dd>
 </dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.fast_downward.FastDownwardEnv.kill_connection">
-<span class="sig-name descname"><span class="pre">kill_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.kill_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.kill_connection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Kill the connection</p>
+<span class="sig-name descname"><span class="pre">kill_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.kill_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.kill_connection" title="Link to this definition">¶</a></dt>
+<dd><p>Kill the connection.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dacbench.envs.fast_downward.FastDownwardEnv.port">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.port" title="Link to this definition">¶</a></dt>
+<dd><p>Port function.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.fast_downward.FastDownwardEnv.recv_msg">
-<span class="sig-name descname"><span class="pre">recv_msg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.recv_msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.recv_msg" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">recv_msg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.recv_msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.recv_msg" title="Link to this definition">¶</a></dt>
 <dd><p>Recieve a whole message. The message has to be prepended with its total size
-Based on comment from SO see [1]</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The message as byte</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bytes</p>
+Based on comment from SO see [1].</p>
+<section id="id1">
+<h2>Returns:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>bytes</dt><dd><p>The message as byte</p>
 </dd>
 </dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.fast_downward.FastDownwardEnv.recvall">
-<span class="sig-name descname"><span class="pre">recvall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.recvall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.recvall" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given we know the size we want to recieve, we can recieve that amount of bytes.
-Based on comment from SO see [1]</p>
+<span class="sig-name descname"><span class="pre">recvall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.recvall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.recvall" title="Link to this definition">¶</a></dt>
+<dd><p>Given we know the size we want to recieve,
+we can recieve that amount of bytes.
+Based on comment from SO see [1].</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – Number of bytes to expect in the data</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The message as byte</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bytes</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – Number of bytes to expect in the data</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>----------</strong></p></li>
+<li><p><strong>bytes</strong> – The message as byte</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.fast_downward.FastDownwardEnv.render">
-<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'human'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.render" title="Permalink to this definition">¶</a></dt>
-<dd><p>Required by gym.Env but not implemented</p>
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'human'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.render" title="Link to this definition">¶</a></dt>
+<dd><p>Required by gym.Env but not implemented.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mode</strong> (<em>str</em>) – Rendering mode</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.fast_downward.FastDownwardEnv.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reset environment</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>np.array</em> – State after reset</p></li>
-<li><p><em>dict</em> – Meta-info</p></li>
-</ul>
-</p>
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.reset" title="Link to this definition">¶</a></dt>
+<dd><p>Reset environment.</p>
+<section id="id2">
+<h2>Returns:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>np.array</dt><dd><p>State after reset</p>
+</dd>
+<dt>dict</dt><dd><p>Meta-info</p>
 </dd>
 </dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.fast_downward.FastDownwardEnv.send_msg">
-<span class="sig-name descname"><span class="pre">send_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.send_msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.send_msg" title="Permalink to this definition">¶</a></dt>
-<dd><p>Send message and prepend the message size</p>
+<span class="sig-name descname"><span class="pre">send_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.send_msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.send_msg" title="Link to this definition">¶</a></dt>
+<dd><p>Send message and prepend the message size.</p>
 <p>Based on comment from SO see [1]
 [1] <a class="reference external" href="https://stackoverflow.com/a/17668009">https://stackoverflow.com/a/17668009</a></p>
 <dl class="field-list simple">
@@ -593,17 +503,20 @@ Based on comment from SO see [1]</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.fast_downward.FastDownwardEnv.step">
-<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Environment step</p>
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#FastDownwardEnv.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.FastDownwardEnv.step" title="Link to this definition">¶</a></dt>
+<dd><p>Environment step.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>action</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>List</em><em>[</em><em>int</em><em>]</em><em>]</em>) – Parameter(s) to apply</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>state, reward, terminated, truncated, info</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.array, float, bool, bool, dict</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>List</em><em>[</em><em>int</em><em>]</em><em>]</em>) – Parameter(s) to apply</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>----------</strong></p></li>
+<li><p><strong>np.array</strong> – state, reward, terminated, truncated, info</p></li>
+<li><p><strong>float</strong> – state, reward, terminated, truncated, info</p></li>
+<li><p><strong>bool</strong> – state, reward, terminated, truncated, info</p></li>
+<li><p><strong>bool</strong> – state, reward, terminated, truncated, info</p></li>
+<li><p><strong>dict</strong> – state, reward, terminated, truncated, info</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -612,9 +525,9 @@ Based on comment from SO see [1]</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="dacbench.envs.fast_downward.StateType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.envs.fast_downward.</span></span><span class="sig-name descname"><span class="pre">StateType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#StateType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.StateType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.envs.fast_downward.</span></span><span class="sig-name descname"><span class="pre">StateType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/fast_downward.html#StateType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.fast_downward.StateType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
-<p>Class to define numbers for state types</p>
+<p>Class to define numbers for state types.</p>
 </dd></dl>
 
 </section>
@@ -624,21 +537,7 @@ Based on comment from SO see [1]</p>
               
               
               <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="geometric.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">The Geometric Toy Benchmark</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="theory.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The Theory Benchmark</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
               
           </main>
@@ -660,7 +559,7 @@ Based on comment from SO see [1]</p>
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-6.1.3. Template is modified version of <a
+8.0.2. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

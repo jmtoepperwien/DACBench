@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dacbench.abstract_benchmark &#8212; DACBench Documentation 0.2.0 documentation</title>
+    <title>dacbench.abstract_benchmark &#8212; DACBench Documentation 0.3.0 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ac9c05f7c49ca1e1f876c6e36360ea26.css" rel="stylesheet">
@@ -22,14 +21,14 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=f129cdf0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -89,11 +88,11 @@
         <div class="dropdown mt-1">
     <button type="button" class="btn btn-secondary btn-md navbar-btn dropdown-toggle" id="dLabelMore"
         data-toggle="dropdown">
-        v0.2.0
+        v0.3.0
         <span class="caret"></span>
     </button>
     <div class="dropdown-menu list-group-flush py-0" aria-labelledby="dLabelMore">
-        <a class="list-group-item list-group-item-action" href="#">v0.2.0</a>
+        <a class="list-group-item list-group-item-action" href="#">v0.3.0</a>
     </div>
 </div>
       </div>
@@ -118,7 +117,7 @@
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
             <div class="col-12 col-md-3 bd-sidebar"><h4 class="mt-0 mb-0"><a href="../../index.html">DACBench Documentation</a></h4>
-<div class="mb-3">v0.2.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+<div class="mb-3">v0.3.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -154,8 +153,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../source/benchmark_docs/sigmoid.html">
-   The Sigmoid Toy Benchmark
+  <a class="reference internal" href="../../source/benchmark_docs/function_approximation.html">
+   The Function Approximation Toy Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -169,28 +168,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../source/benchmark_docs/geometric.html">
-   The Geometric Toy Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../source/benchmark_docs/fastdownward.html">
-   The FastDownward Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../source/benchmark_docs/theory.html">
    The Theory Benchmark
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../source/benchmark_docs/cma.html">
-   The PyCMA CMA-ES Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../source/benchmark_docs/modcma.html">
-   The IOHProfiler ModCMA Benchmark
+   The CMA-ES Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -275,22 +259,29 @@
               <div>
                 
   <h1>Source code for dacbench.abstract_benchmark</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span></span><span class="sd">&quot;&quot;&quot;Abstract Benchmark.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">FunctionType</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ConfigSpace</span> <span class="kn">import</span> <span class="n">ConfigurationSpace</span>
 <span class="kn">from</span> <span class="nn">gymnasium</span> <span class="kn">import</span> <span class="n">spaces</span>
 
 <span class="kn">from</span> <span class="nn">dacbench</span> <span class="kn">import</span> <span class="n">wrappers</span>
 
 
-<div class="viewcode-block" id="AbstractBenchmark"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark">[docs]</a><span class="k">class</span> <span class="nc">AbstractBenchmark</span><span class="p">:</span>
+<div class="viewcode-block" id="AbstractBenchmark">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark">[docs]</a>
+<span class="k">class</span> <span class="nc">AbstractBenchmark</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract template for benchmark classes.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;objdict&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize benchmark class.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">objdict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize benchmark class.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -311,21 +302,22 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="AbstractBenchmark.get_config"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.get_config">[docs]</a>    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return current configuration.</span>
+<div class="viewcode-block" id="AbstractBenchmark.get_config">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.get_config">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return current configuration.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        dict</span>
-<span class="sd">            Current config</span>
-
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        dict: Current config</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.serialize_config"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.serialize_config">[docs]</a>    <span class="k">def</span> <span class="nf">serialize_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Save configuration to json.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.serialize_config">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.serialize_config">[docs]</a>
+    <span class="k">def</span> <span class="nf">serialize_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save configuration to json.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -346,21 +338,18 @@
         <span class="k">if</span> <span class="s2">&quot;action_space&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
             <span class="n">conf</span><span class="p">[</span><span class="s2">&quot;action_space&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space_to_list</span><span class="p">(</span><span class="n">conf</span><span class="p">[</span><span class="s2">&quot;action_space&quot;</span><span class="p">])</span>
 
-        <span class="c1"># TODO: how can we use the built in serialization of configspace here?</span>
         <span class="k">if</span> <span class="s2">&quot;config_space&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
-            <span class="n">conf</span><span class="p">[</span><span class="s2">&quot;config_space&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_configspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">config_space</span><span class="p">)</span>
+            <span class="n">conf</span><span class="p">[</span><span class="s2">&quot;config_space&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">config_space</span><span class="o">.</span><span class="n">to_serialized_dict</span><span class="p">()</span>
 
         <span class="n">conf</span> <span class="o">=</span> <span class="n">AbstractBenchmark</span><span class="o">.</span><span class="n">__stringify_functions</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="nb">list</span>
-            <span class="p">):</span>
-                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
                     <span class="n">conf</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">conf</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
                     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conf</span><span class="p">[</span><span class="n">k</span><span class="p">])):</span>
                         <span class="k">if</span> <span class="p">(</span>
-                            <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">conf</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">float</span>
+                            <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">conf</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="nb">float</span><span class="p">)</span>
                             <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">conf</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
                             <span class="ow">and</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">conf</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
                         <span class="p">):</span>
@@ -370,153 +359,53 @@
 
         <span class="n">conf</span><span class="p">[</span><span class="s2">&quot;wrappers&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jsonify_wrappers</span><span class="p">()</span>
 
-        <span class="c1"># can be recovered from instance_set_path, and could contain function that are not serializable</span>
+        <span class="c1"># can be recovered from instance_set_path, and could contain function that</span>
+        <span class="c1"># are not serializable</span>
         <span class="k">if</span> <span class="s2">&quot;instance_set&quot;</span> <span class="ow">in</span> <span class="n">conf</span><span class="p">:</span>
             <span class="k">del</span> <span class="n">conf</span><span class="p">[</span><span class="s2">&quot;instance_set&quot;</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">conf</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.process_configspace"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.process_configspace">[docs]</a>    <span class="k">def</span> <span class="nf">process_configspace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration_space</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;This is largely the builting cs.json.write method, but doesn&#39;t save the result directly. If this is ever implemented in cs, we can replace this method.&quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">ConfigSpace.configuration_space</span> <span class="kn">import</span> <span class="n">ConfigurationSpace</span>
-        <span class="kn">from</span> <span class="nn">ConfigSpace.hyperparameters</span> <span class="kn">import</span> <span class="p">(</span>
-            <span class="n">CategoricalHyperparameter</span><span class="p">,</span>
-            <span class="n">Constant</span><span class="p">,</span>
-            <span class="n">NormalFloatHyperparameter</span><span class="p">,</span>
-            <span class="n">NormalIntegerHyperparameter</span><span class="p">,</span>
-            <span class="n">OrdinalHyperparameter</span><span class="p">,</span>
-            <span class="n">UniformFloatHyperparameter</span><span class="p">,</span>
-            <span class="n">UniformIntegerHyperparameter</span><span class="p">,</span>
-            <span class="n">UnParametrizedHyperparameter</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="kn">from</span> <span class="nn">ConfigSpace.read_and_write.json</span> <span class="kn">import</span> <span class="p">(</span>
-            <span class="n">_build_categorical</span><span class="p">,</span>
-            <span class="n">_build_condition</span><span class="p">,</span>
-            <span class="n">_build_constant</span><span class="p">,</span>
-            <span class="n">_build_forbidden</span><span class="p">,</span>
-            <span class="n">_build_normal_float</span><span class="p">,</span>
-            <span class="n">_build_normal_int</span><span class="p">,</span>
-            <span class="n">_build_ordinal</span><span class="p">,</span>
-            <span class="n">_build_uniform_float</span><span class="p">,</span>
-            <span class="n">_build_uniform_int</span><span class="p">,</span>
-            <span class="n">_build_unparametrized_hyperparameter</span><span class="p">,</span>
-        <span class="p">)</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">configuration_space</span><span class="p">,</span> <span class="n">ConfigurationSpace</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                <span class="s2">&quot;pcs_parser.write expects an instance of </span><span class="si">%s</span><span class="s2">, &quot;</span>
-                <span class="s2">&quot;you provided &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ConfigurationSpace</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">configuration_space</span><span class="p">))</span>
-            <span class="p">)</span>
-
-        <span class="n">hyperparameters</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">conditions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">forbiddens</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="k">for</span> <span class="n">hyperparameter</span> <span class="ow">in</span> <span class="n">configuration_space</span><span class="o">.</span><span class="n">get_hyperparameters</span><span class="p">():</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">,</span> <span class="n">Constant</span><span class="p">):</span>
-                <span class="n">hyperparameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_constant</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">,</span> <span class="n">UnParametrizedHyperparameter</span><span class="p">):</span>
-                <span class="n">hyperparameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="n">_build_unparametrized_hyperparameter</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">)</span>
-                <span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">,</span> <span class="n">UniformFloatHyperparameter</span><span class="p">):</span>
-                <span class="n">hyperparameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_uniform_float</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">,</span> <span class="n">NormalFloatHyperparameter</span><span class="p">):</span>
-                <span class="n">hyperparameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_normal_float</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">,</span> <span class="n">UniformIntegerHyperparameter</span><span class="p">):</span>
-                <span class="n">hyperparameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_uniform_int</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">,</span> <span class="n">NormalIntegerHyperparameter</span><span class="p">):</span>
-                <span class="n">hyperparameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_normal_int</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">,</span> <span class="n">CategoricalHyperparameter</span><span class="p">):</span>
-                <span class="n">hyperparameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_categorical</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">,</span> <span class="n">OrdinalHyperparameter</span><span class="p">):</span>
-                <span class="n">hyperparameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_ordinal</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">))</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                    <span class="s2">&quot;Unknown type: </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">)&quot;</span>
-                    <span class="o">%</span> <span class="p">(</span>
-                        <span class="nb">type</span><span class="p">(</span><span class="n">hyperparameter</span><span class="p">),</span>
-                        <span class="n">hyperparameter</span><span class="p">,</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">condition</span> <span class="ow">in</span> <span class="n">configuration_space</span><span class="o">.</span><span class="n">get_conditions</span><span class="p">():</span>
-            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_condition</span><span class="p">(</span><span class="n">condition</span><span class="p">))</span>
-
-        <span class="k">for</span> <span class="n">forbidden_clause</span> <span class="ow">in</span> <span class="n">configuration_space</span><span class="o">.</span><span class="n">get_forbiddens</span><span class="p">():</span>
-            <span class="n">forbiddens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_forbidden</span><span class="p">(</span><span class="n">forbidden_clause</span><span class="p">))</span>
-
-        <span class="n">rval</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="n">configuration_space</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">rval</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration_space</span><span class="o">.</span><span class="n">name</span>
-        <span class="n">rval</span><span class="p">[</span><span class="s2">&quot;hyperparameters&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hyperparameters</span>
-        <span class="n">rval</span><span class="p">[</span><span class="s2">&quot;conditions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">conditions</span>
-        <span class="n">rval</span><span class="p">[</span><span class="s2">&quot;forbiddens&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">forbiddens</span>
-
-        <span class="k">return</span> <span class="n">rval</span></div>
-
-<div class="viewcode-block" id="AbstractBenchmark.from_json"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.from_json">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="AbstractBenchmark.from_json">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.from_json">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">json_config</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get config from json dict.&quot;&quot;&quot;</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">objdict</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_config</span><span class="p">))</span>
-        <span class="k">if</span> <span class="s2">&quot;config_space&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">ConfigSpace</span> <span class="kn">import</span> <span class="n">ConfigurationSpace</span>
-            <span class="kn">from</span> <span class="nn">ConfigSpace.read_and_write.json</span> <span class="kn">import</span> <span class="p">(</span>
-                <span class="n">_construct_condition</span><span class="p">,</span>
-                <span class="n">_construct_forbidden</span><span class="p">,</span>
-                <span class="n">_construct_hyperparameter</span><span class="p">,</span>
+        <span class="k">if</span> <span class="s2">&quot;config_space&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+            <span class="n">configuration_space</span> <span class="o">=</span> <span class="n">ConfigurationSpace</span><span class="o">.</span><span class="n">from_serialized_dict</span><span class="p">(</span>
+                <span class="n">config</span><span class="p">[</span><span class="s2">&quot;config_space&quot;</span><span class="p">]</span>
             <span class="p">)</span>
-
-            <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">config_space</span><span class="p">:</span>
-                <span class="n">configuration_space</span> <span class="o">=</span> <span class="n">ConfigurationSpace</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">config_space</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
-                <span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">configuration_space</span> <span class="o">=</span> <span class="n">ConfigurationSpace</span><span class="p">()</span>
-
-            <span class="k">for</span> <span class="n">hyperparameter</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">config_space</span><span class="p">[</span><span class="s2">&quot;hyperparameters&quot;</span><span class="p">]:</span>
-                <span class="n">configuration_space</span><span class="o">.</span><span class="n">add_hyperparameter</span><span class="p">(</span>
-                    <span class="n">_construct_hyperparameter</span><span class="p">(</span>
-                        <span class="n">hyperparameter</span><span class="p">,</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
-
-            <span class="k">for</span> <span class="n">condition</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">config_space</span><span class="p">[</span><span class="s2">&quot;conditions&quot;</span><span class="p">]:</span>
-                <span class="n">configuration_space</span><span class="o">.</span><span class="n">add_condition</span><span class="p">(</span>
-                    <span class="n">_construct_condition</span><span class="p">(</span>
-                        <span class="n">condition</span><span class="p">,</span>
-                        <span class="n">configuration_space</span><span class="p">,</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
-
-            <span class="k">for</span> <span class="n">forbidden</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">config_space</span><span class="p">[</span><span class="s2">&quot;forbiddens&quot;</span><span class="p">]:</span>
-                <span class="n">configuration_space</span><span class="o">.</span><span class="n">add_forbidden_clause</span><span class="p">(</span>
-                    <span class="n">_construct_forbidden</span><span class="p">(</span>
-                        <span class="n">forbidden</span><span class="p">,</span>
-                        <span class="n">configuration_space</span><span class="p">,</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
             <span class="n">config</span><span class="o">.</span><span class="n">config_space</span> <span class="o">=</span> <span class="n">configuration_space</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.to_json"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.to_json">[docs]</a>    <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.to_json">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.to_json">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write config to json.&quot;&quot;&quot;</span>
         <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialize_config</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.save_config"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.save_config">[docs]</a>    <span class="k">def</span> <span class="nf">save_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.save_config">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.save_config">[docs]</a>
+    <span class="k">def</span> <span class="nf">save_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write config to path.&quot;&quot;&quot;</span>
         <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialize_config</span><span class="p">()</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="s2">&quot;not serializable&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.jsonify_wrappers"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.jsonify_wrappers">[docs]</a>    <span class="k">def</span> <span class="nf">jsonify_wrappers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Write wrapper description to list.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
+<div class="viewcode-block" id="AbstractBenchmark.jsonify_wrappers">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.jsonify_wrappers">[docs]</a>
+    <span class="k">def</span> <span class="nf">jsonify_wrappers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write wrapper description to list.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
 <span class="sd">        list</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -542,9 +431,11 @@
                 <span class="n">wrappers</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">function</span><span class="p">,</span> <span class="n">arg_descriptions</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">wrappers</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.dejson_wrappers"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.dejson_wrappers">[docs]</a>    <span class="k">def</span> <span class="nf">dejson_wrappers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrapper_list</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Load wrapper from list.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.dejson_wrappers">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.dejson_wrappers">[docs]</a>
+    <span class="k">def</span> <span class="nf">dejson_wrappers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrapper_list</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load wrapper from list.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -571,10 +462,10 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">wrap_funcs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">))</span></div>
 
+
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">__import_from</span><span class="p">(</span><span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Imports the class / function / ... with name from module.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Imports the class / function / ... with name from module.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -583,7 +474,7 @@
 <span class="sd">        name : str</span>
 <span class="sd">            name to import</span>
 
-<span class="sd">        Returns</span>
+<span class="sd">        Returns:</span>
 <span class="sd">        -------</span>
 <span class="sd">        the imported object</span>
 
@@ -591,15 +482,17 @@
         <span class="n">module</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">fromlist</span><span class="o">=</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AbstractBenchmark.class_to_str"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.class_to_str">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="AbstractBenchmark.class_to_str">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.class_to_str">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">class_to_str</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get string name from class.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span></div>
 
+
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">__decorate_config_with_functions</span><span class="p">(</span><span class="n">conf</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Replaced the stringified functions with the callable objects.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Replaced the stringified functions with the callable objects.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -618,28 +511,29 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">__stringify_functions</span><span class="p">(</span><span class="n">conf</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Replaced all callables in the config with a triple (&#39;function&#39;, module_name, function_name).</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Replaced all callables in the config with a triple</span>
+<span class="sd">        (&#39;function&#39;, module_name, function_name).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        conf : dict</span>
 <span class="sd">            config to parse</span>
 
-<span class="sd">        Returns</span>
+<span class="sd">        Returns:</span>
 <span class="sd">        -------</span>
 <span class="sd">        modified dict</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">_value</span> <span class="ow">in</span> <span class="p">{</span>
             <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">conf</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">FunctionType</span><span class="p">)</span>
         <span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">conf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">,</span> <span class="n">conf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="n">conf</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">conf</span>
 
-<div class="viewcode-block" id="AbstractBenchmark.space_to_list"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.space_to_list">[docs]</a>    <span class="k">def</span> <span class="nf">space_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Make list from gym space.</span>
+<div class="viewcode-block" id="AbstractBenchmark.space_to_list">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.space_to_list">[docs]</a>
+    <span class="k">def</span> <span class="nf">space_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make list from gym space.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -666,9 +560,11 @@
             <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">space</span><span class="o">.</span><span class="n">n</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">res</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.list_to_space"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.list_to_space">[docs]</a>    <span class="k">def</span> <span class="nf">list_to_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space_list</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Make gym space from list.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.list_to_space">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.list_to_space">[docs]</a>
+    <span class="k">def</span> <span class="nf">list_to_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space_list</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make gym space from list.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -689,9 +585,11 @@
             <span class="n">space</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">spaces</span><span class="p">,</span> <span class="n">space_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">space</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.jsonify_dict_space"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.jsonify_dict_space">[docs]</a>    <span class="k">def</span> <span class="nf">jsonify_dict_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dict_space</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gym spaces to json dict.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.jsonify_dict_space">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.jsonify_dict_space">[docs]</a>
+    <span class="k">def</span> <span class="nf">jsonify_dict_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dict_space</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gym spaces to json dict.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -702,12 +600,13 @@
         <span class="n">keys</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">arguments</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dict_space</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dict_space</span><span class="p">:</span>
             <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">dict_space</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">,</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span> <span class="o">|</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Only Dict spaces made up of Box spaces or discrete spaces are supported but got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Only Dict spaces made up of Box spaces or discrete spaces are &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;supported but got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
 
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">):</span>
@@ -722,9 +621,11 @@
                 <span class="n">arguments</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">n</span><span class="p">])</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">keys</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">arguments</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.dictify_json"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.dictify_json">[docs]</a>    <span class="k">def</span> <span class="nf">dictify_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dict_list</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Json to dict structure for gym spaces.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.dictify_json">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.dictify_json">[docs]</a>
+    <span class="k">def</span> <span class="nf">dictify_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dict_list</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Json to dict structure for gym spaces.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -734,21 +635,24 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dict_space</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">keys</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">dict_list</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">args_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-            <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;box&quot;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">space_type</span><span class="p">,</span> <span class="n">args_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">space_type</span> <span class="o">==</span> <span class="s2">&quot;box&quot;</span><span class="p">:</span>
                 <span class="n">prepared_args</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">args_</span><span class="p">)</span>
                 <span class="n">dict_space</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">*</span><span class="n">prepared_args</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;discrete&quot;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">space_type</span> <span class="o">==</span> <span class="s2">&quot;discrete&quot;</span><span class="p">:</span>
                 <span class="n">dict_space</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="o">*</span><span class="n">args_</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Currently only Discrete and Box spaces are allowed in Dict spaces, got </span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Currently only Discrete and Box spaces are allowed in Dict &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;spaces, got </span><span class="si">{</span><span class="n">space_type</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
         <span class="k">return</span> <span class="n">dict_space</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.load_config"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.load_config">[docs]</a>    <span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;objdict&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Load config.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.load_config">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.load_config">[docs]</a>
+    <span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">objdict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load config.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -757,9 +661,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
-        <span class="k">if</span> <span class="s2">&quot;observation_space_type&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;observation_space_type&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>  <span class="c1"># noqa: SIM102</span>
             <span class="c1"># Types have to be numpy dtype (for gym spaces)s</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;observation_space_type&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;observation_space_type&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;observation_space_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;None&quot;</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;observation_space_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -774,7 +678,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;observation_space&quot;</span><span class="p">]</span>
             <span class="p">)</span>
 
-        <span class="k">elif</span> <span class="s2">&quot;observation_space_class&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">elif</span> <span class="s2">&quot;observation_space_class&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>  <span class="c1"># noqa: SIM102</span>
             <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">observation_space_class</span> <span class="o">==</span> <span class="s2">&quot;Dict&quot;</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;observation_space_args&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">dictify_json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;observation_space_args&quot;</span><span class="p">])</span>
@@ -791,15 +695,17 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">AbstractBenchmark</span><span class="o">.</span><span class="n">__decorate_config_with_functions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
                     <span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">k</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.read_config_file"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.read_config_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_config_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Read configuration from file.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.read_config_file">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.read_config_file">[docs]</a>
+    <span class="k">def</span> <span class="nf">read_config_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read configuration from file.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -807,26 +713,29 @@
 <span class="sd">            Path to config file</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
             <span class="n">config</span> <span class="o">=</span> <span class="n">objdict</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.get_environment"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.get_environment">[docs]</a>    <span class="k">def</span> <span class="nf">get_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Make benchmark environment.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        env : gym.Env</span>
-<span class="sd">            Benchmark environment</span>
+<div class="viewcode-block" id="AbstractBenchmark.get_environment">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.get_environment">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make benchmark environment.</span>
 
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        gym.Env: Benchmark environment</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.set_seed"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.set_seed">[docs]</a>    <span class="k">def</span> <span class="nf">set_seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Set environment seed.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.set_seed">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.set_seed">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set environment seed.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -836,9 +745,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;seed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">seed</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.set_action_space"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.set_action_space">[docs]</a>    <span class="k">def</span> <span class="nf">set_action_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Change action space.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.set_action_space">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.set_action_space">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_action_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Change action space.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -851,9 +762,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;action_space&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kind</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;action_space_args&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.set_observation_space"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.set_observation_space">[docs]</a>    <span class="k">def</span> <span class="nf">set_observation_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">data_type</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Change observation_space.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.set_observation_space">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.set_observation_space">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_observation_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">data_type</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Change observation_space.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -869,9 +782,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;observation_space_args&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;observation_space_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_type</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.register_wrapper"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.register_wrapper">[docs]</a>    <span class="k">def</span> <span class="nf">register_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrap_func</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Register wrapper.</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.register_wrapper">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.register_wrapper">[docs]</a>
+    <span class="k">def</span> <span class="nf">register_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrap_func</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register wrapper.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -884,38 +799,58 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">wrap_funcs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wrap_func</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AbstractBenchmark.__eq__"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+
+<div class="viewcode-block" id="AbstractBenchmark.__eq__">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.__eq__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check for equality.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">config</span></div></div>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">))</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">config</span></div>
+</div>
+
 
 
 <span class="c1"># This code is taken from https://goodcode.io/articles/python-dict-object/</span>
-<div class="viewcode-block" id="objdict"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict">[docs]</a><span class="k">class</span> <span class="nc">objdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+<div class="viewcode-block" id="objdict">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict">[docs]</a>
+<span class="k">class</span> <span class="nc">objdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>  <span class="c1"># noqa: N801</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Modified dict to make config changes more flexible.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="objdict.__getattr__"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__getattr__">[docs]</a>    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="objdict.__getattr__">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__getattr__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;No such attribute: &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;No such attribute: &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="objdict.__setattr__"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__setattr__">[docs]</a>    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+
+<div class="viewcode-block" id="objdict.__setattr__">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__setattr__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
 
-<div class="viewcode-block" id="objdict.__delattr__"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__delattr__">[docs]</a>    <span class="k">def</span> <span class="fm">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+
+<div class="viewcode-block" id="objdict.__delattr__">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__delattr__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete attribute.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;No such attribute: &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="objdict.copy"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="objdict.copy">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.copy">[docs]</a>
+    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Copy self.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">objdict</span><span class="p">(</span><span class="o">**</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="objdict.__eq__"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+
+<div class="viewcode-block" id="objdict.__eq__">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__eq__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check for equality.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -929,9 +864,14 @@
                 <span class="n">truth</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">other</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
         <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">truth</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="objdict.__ne__"><a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__ne__">[docs]</a>    <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+
+<div class="viewcode-block" id="objdict.__ne__">
+<a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__ne__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check for inequality.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span></div></div>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span></div>
+</div>
+
 </pre></div>
 
               </div>
@@ -960,7 +900,7 @@
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-6.1.3. Template is modified version of <a
+8.0.2. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

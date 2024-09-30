@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dacbench.benchmarks.toysgd_benchmark &#8212; DACBench Documentation 0.2.0 documentation</title>
+    <title>dacbench.benchmarks.toysgd_benchmark &#8212; DACBench Documentation 0.3.0 documentation</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet">
   <link href="../../../_static/css/index.ac9c05f7c49ca1e1f876c6e36360ea26.css" rel="stylesheet">
@@ -22,14 +21,14 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/documentation_options.js?v=f129cdf0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -89,11 +88,11 @@
         <div class="dropdown mt-1">
     <button type="button" class="btn btn-secondary btn-md navbar-btn dropdown-toggle" id="dLabelMore"
         data-toggle="dropdown">
-        v0.2.0
+        v0.3.0
         <span class="caret"></span>
     </button>
     <div class="dropdown-menu list-group-flush py-0" aria-labelledby="dLabelMore">
-        <a class="list-group-item list-group-item-action" href="#">v0.2.0</a>
+        <a class="list-group-item list-group-item-action" href="#">v0.3.0</a>
     </div>
 </div>
       </div>
@@ -118,7 +117,7 @@
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
             <div class="col-12 col-md-3 bd-sidebar"><h4 class="mt-0 mb-0"><a href="../../../index.html">DACBench Documentation</a></h4>
-<div class="mb-3">v0.2.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+<div class="mb-3">v0.3.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -154,8 +153,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../source/benchmark_docs/sigmoid.html">
-   The Sigmoid Toy Benchmark
+  <a class="reference internal" href="../../../source/benchmark_docs/function_approximation.html">
+   The Function Approximation Toy Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -169,28 +168,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../source/benchmark_docs/geometric.html">
-   The Geometric Toy Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../source/benchmark_docs/fastdownward.html">
-   The FastDownward Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../../source/benchmark_docs/theory.html">
    The Theory Benchmark
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../source/benchmark_docs/cma.html">
-   The PyCMA CMA-ES Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../source/benchmark_docs/modcma.html">
-   The IOHProfiler ModCMA Benchmark
+   The CMA-ES Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -275,22 +259,30 @@
               <div>
                 
   <h1>Source code for dacbench.benchmarks.toysgd_benchmark</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="sd">&quot;&quot;&quot;Benchmark for Toysgd.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">ConfigSpace</span> <span class="k">as</span> <span class="nn">CS</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">ConfigSpace</span> <span class="k">as</span> <span class="nn">CS</span>  <span class="c1"># noqa: N817</span>
 <span class="kn">import</span> <span class="nn">ConfigSpace.hyperparameters</span> <span class="k">as</span> <span class="nn">CSH</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">gymnasium</span> <span class="kn">import</span> <span class="n">spaces</span>
 
+<span class="c1"># from dacbench.envs.toysgd import create_noisy_quadratic_instance_set</span>
 <span class="kn">from</span> <span class="nn">dacbench.abstract_benchmark</span> <span class="kn">import</span> <span class="n">AbstractBenchmark</span><span class="p">,</span> <span class="n">objdict</span>
-<span class="kn">from</span> <span class="nn">dacbench.envs</span> <span class="kn">import</span> <span class="n">ToySGDEnv</span>
+<span class="kn">from</span> <span class="nn">dacbench.envs</span> <span class="kn">import</span> <span class="n">ToySGDEnv</span><span class="p">,</span> <span class="n">ToySGDInstance</span>
+<span class="kn">from</span> <span class="nn">dacbench.envs.env_utils.toy_functions</span> <span class="kn">import</span> <span class="n">get_toy_function</span>
 
 <span class="n">DEFAULT_CFG_SPACE</span> <span class="o">=</span> <span class="n">CS</span><span class="o">.</span><span class="n">ConfigurationSpace</span><span class="p">()</span>
 <span class="n">LR</span> <span class="o">=</span> <span class="n">CSH</span><span class="o">.</span><span class="n">UniformFloatHyperparameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;0_log_learning_rate&quot;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">MOMENTUM</span> <span class="o">=</span> <span class="n">CSH</span><span class="o">.</span><span class="n">UniformFloatHyperparameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;1_log_momentum&quot;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">DEFAULT_CFG_SPACE</span><span class="o">.</span><span class="n">add_hyperparameter</span><span class="p">(</span><span class="n">LR</span><span class="p">)</span>
-<span class="n">DEFAULT_CFG_SPACE</span><span class="o">.</span><span class="n">add_hyperparameter</span><span class="p">(</span><span class="n">MOMENTUM</span><span class="p">)</span>
+<span class="n">DEFAULT_CFG_SPACE</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">LR</span><span class="p">)</span>
+<span class="n">DEFAULT_CFG_SPACE</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MOMENTUM</span><span class="p">)</span>
+
+<span class="n">DEFAULT_BATCH_SIZE</span> <span class="o">=</span> <span class="mi">16</span>
 
 
 <span class="n">INFO</span> <span class="o">=</span> <span class="p">{</span>
@@ -314,7 +306,9 @@
         <span class="s2">&quot;observation_space_args&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
                 <span class="s2">&quot;remaining_budget&quot;</span><span class="p">:</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,)),</span>
-                <span class="s2">&quot;gradient&quot;</span><span class="p">:</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">low</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,)),</span>
+                <span class="s2">&quot;gradient&quot;</span><span class="p">:</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span>
+                    <span class="n">low</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">DEFAULT_BATCH_SIZE</span><span class="p">,)</span>
+                <span class="p">),</span>
                 <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,)),</span>
                 <span class="s2">&quot;momentum&quot;</span><span class="p">:</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,)),</span>
             <span class="p">}</span>
@@ -323,23 +317,28 @@
         <span class="s2">&quot;cutoff&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
         <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">&quot;multi_agent&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s2">&quot;instance_set_path&quot;</span><span class="p">:</span> <span class="s2">&quot;../instance_sets/toysgd/toysgd_default.csv&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="n">DEFAULT_BATCH_SIZE</span><span class="p">,</span>
+        <span class="s2">&quot;instance_set_path&quot;</span><span class="p">:</span> <span class="s2">&quot;toysgd_default.csv&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;test_set_path&quot;</span><span class="p">:</span> <span class="s2">&quot;toysgd_default.csv&quot;</span><span class="p">,</span>
         <span class="s2">&quot;benchmark_info&quot;</span><span class="p">:</span> <span class="n">INFO</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="ToySGDBenchmark"><a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark">[docs]</a><span class="k">class</span> <span class="nc">ToySGDBenchmark</span><span class="p">(</span><span class="n">AbstractBenchmark</span><span class="p">):</span>
+<div class="viewcode-block" id="ToySGDBenchmark">
+<a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark">[docs]</a>
+<span class="k">class</span> <span class="nc">ToySGDBenchmark</span><span class="p">(</span><span class="n">AbstractBenchmark</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SGD Benchmark with toy functions.&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize SGD Benchmark</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize SGD Benchmark.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        -------</span>
 <span class="sd">        config_path : str</span>
 <span class="sd">            Path to config file (optional)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ToySGDBenchmark</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">objdict</span><span class="p">(</span><span class="n">DEFAULTS</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 
@@ -347,23 +346,20 @@
             <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEFAULTS</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
-<div class="viewcode-block" id="ToySGDBenchmark.get_environment"><a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.get_environment">[docs]</a>    <span class="k">def</span> <span class="nf">get_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return SGDEnv env with current configuration</span>
+<div class="viewcode-block" id="ToySGDBenchmark.get_environment">
+<a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.get_environment">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return SGDEnv env with current configuration.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        SGDEnv</span>
-<span class="sd">            SGD environment</span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        ToySGDEnv: ToySGD environment</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="s2">&quot;instance_set&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="s2">&quot;instance_set&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">read_instance_set</span><span class="p">()</span>
 
         <span class="c1"># Read test set if path is specified</span>
-        <span class="k">if</span> <span class="p">(</span>
-            <span class="s2">&quot;test_set&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-            <span class="ow">and</span> <span class="s2">&quot;test_set_path&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-        <span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;test_set&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="ow">and</span> <span class="s2">&quot;test_set_path&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">read_instance_set</span><span class="p">(</span><span class="n">test</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="n">env</span> <span class="o">=</span> <span class="n">ToySGDEnv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
@@ -372,31 +368,55 @@
 
         <span class="k">return</span> <span class="n">env</span></div>
 
-<div class="viewcode-block" id="ToySGDBenchmark.read_instance_set"><a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.read_instance_set">[docs]</a>    <span class="k">def</span> <span class="nf">read_instance_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Read path of instances from config into list</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ToySGDBenchmark.read_instance_set">
+<a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.read_instance_set">[docs]</a>
+    <span class="k">def</span> <span class="nf">read_instance_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read path of instances from config into list.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">test</span><span class="p">:</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-                <span class="o">+</span> <span class="s2">&quot;/&quot;</span>
-                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">test_set_path</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">test_set_path</span><span class="p">)</span>
+            <span class="n">relative_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">test_set_path</span>
+            <span class="n">dacbench_path</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+                <span class="o">/</span> <span class="s2">&quot;../instance_sets/toysgd&quot;</span>
+                <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">test_set_path</span>
             <span class="p">)</span>
             <span class="n">keyword</span> <span class="o">=</span> <span class="s2">&quot;test_set&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-                <span class="o">+</span> <span class="s2">&quot;/&quot;</span>
-                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">instance_set_path</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">instance_set_path</span><span class="p">)</span>
+            <span class="n">relative_path</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">instance_set_path</span>
+            <span class="p">)</span>
+            <span class="n">dacbench_path</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+                <span class="o">/</span> <span class="s2">&quot;../instance_sets/toysgd&quot;</span>
+                <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">instance_set_path</span>
             <span class="p">)</span>
             <span class="n">keyword</span> <span class="o">=</span> <span class="s2">&quot;instance_set&quot;</span>
 
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span>  <span class="c1"># noqa: PLW0127</span>
+        <span class="k">elif</span> <span class="n">relative_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">relative_path</span>
+        <span class="k">elif</span> <span class="n">dacbench_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">dacbench_path</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Test set not found at </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">test_set_path</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">keyword</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
-            <span class="c1"># reader = csv.DictReader(fh, delimiter=&quot;;&quot;)</span>
-            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">instance</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">keyword</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">instance</span><span class="p">[</span><span class="s2">&quot;ID&quot;</span><span class="p">])]</span> <span class="o">=</span> <span class="n">instance</span></div></div>
+        <span class="n">instance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">instance_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">keyword</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">ToySGDInstance</span><span class="p">(</span>
+                <span class="n">function</span><span class="o">=</span><span class="n">get_toy_function</span><span class="p">(</span>
+                    <span class="n">identifier</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;function_identifier&quot;</span><span class="p">],</span>
+                    <span class="n">a</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;function_a&quot;</span><span class="p">],</span>
+                    <span class="n">b</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;function_b&quot;</span><span class="p">],</span>
+                <span class="p">)</span>
+            <span class="p">)</span></div>
+</div>
+
 </pre></div>
 
               </div>
@@ -425,7 +445,7 @@
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-6.1.3. Template is modified version of <a
+8.0.2. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

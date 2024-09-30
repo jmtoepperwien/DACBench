@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Contributing to DACBench &#8212; DACBench Documentation 0.2.0 documentation</title>
+    <title>Contributing to DACBench &#8212; DACBench Documentation 0.3.0 documentation</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ac9c05f7c49ca1e1f876c6e36360ea26.css" rel="stylesheet">
@@ -23,14 +22,14 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../_static/js/index.9ea38e314b9e6d9dab77.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/documentation_options.js?v=f129cdf0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Citing DACBench" href="cite.html" />
@@ -92,11 +91,11 @@
         <div class="dropdown mt-1">
     <button type="button" class="btn btn-secondary btn-md navbar-btn dropdown-toggle" id="dLabelMore"
         data-toggle="dropdown">
-        v0.2.0
+        v0.3.0
         <span class="caret"></span>
     </button>
     <div class="dropdown-menu list-group-flush py-0" aria-labelledby="dLabelMore">
-        <a class="list-group-item list-group-item-action" href="#">v0.2.0</a>
+        <a class="list-group-item list-group-item-action" href="#">v0.3.0</a>
     </div>
 </div>
       </div>
@@ -121,7 +120,7 @@
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
             <div class="col-12 col-md-3 bd-sidebar"><h4 class="mt-0 mb-0"><a href="../index.html">DACBench Documentation</a></h4>
-<div class="mb-3">v0.2.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+<div class="mb-3">v0.3.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -157,8 +156,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="benchmark_docs/sigmoid.html">
-   The Sigmoid Toy Benchmark
+  <a class="reference internal" href="benchmark_docs/function_approximation.html">
+   The Function Approximation Toy Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -172,28 +171,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="benchmark_docs/geometric.html">
-   The Geometric Toy Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="benchmark_docs/fastdownward.html">
-   The FastDownward Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="benchmark_docs/theory.html">
    The Theory Benchmark
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="benchmark_docs/cma.html">
-   The PyCMA CMA-ES Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="benchmark_docs/modcma.html">
-   The IOHProfiler ModCMA Benchmark
+   The CMA-ES Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -307,7 +291,7 @@
               <div>
                 
   <section id="contributing-to-dacbench">
-<span id="contrib"></span><h1>Contributing to DACBench<a class="headerlink" href="#contributing-to-dacbench" title="Permalink to this heading">¶</a></h1>
+<span id="contrib"></span><h1>Contributing to DACBench<a class="headerlink" href="#contributing-to-dacbench" title="Link to this heading">¶</a></h1>
 <p>DACBench is an open-source collaborative project.
 Since its conception, we have had several valueable contributions and appreciate everyone who wants to make DACBench bigger and better for the community.
 This document can be a guide on how to get started contributing to DACBench.</p>
@@ -322,7 +306,7 @@ This document can be a guide on how to get started contributing to DACBench.</p>
 If something is missing or not working for you, consider opening an issue on it, especially if it can’t be fixed within a few minutes.
 Issues are also a good place to request new features and extensions, so don’t hesitate to create one.</p>
 <section id="guidelines-for-pull-requests">
-<h2>Guidelines for Pull-Requests<a class="headerlink" href="#guidelines-for-pull-requests" title="Permalink to this heading">¶</a></h2>
+<h2>Guidelines for Pull-Requests<a class="headerlink" href="#guidelines-for-pull-requests" title="Link to this heading">¶</a></h2>
 <p>Code contributions are best made through pull-requests.
 In order to make the integration as easy as possible, we ask that you follow a few steps:</p>
 <ol class="arabic simple">
@@ -342,7 +326,7 @@ In order to make the integration as easy as possible, we ask that you follow a f
 </ol>
 </section>
 <section id="adding-a-benchmark">
-<h2>Adding a Benchmark<a class="headerlink" href="#adding-a-benchmark" title="Permalink to this heading">¶</a></h2>
+<h2>Adding a Benchmark<a class="headerlink" href="#adding-a-benchmark" title="Link to this heading">¶</a></h2>
 <p>Adding a benchmark can be quite the project depending on the algorithms it’s based on. Therefore you can always contact us via e-mail or through the issues to get assistance.</p>
 <p>In general, there are several steps to take:</p>
 <p><strong>1. Write an environment file</strong>
@@ -424,7 +408,7 @@ Feel free to include details on how it was modelled and please cite the source i
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-6.1.3. Template is modified version of <a
+8.0.2. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

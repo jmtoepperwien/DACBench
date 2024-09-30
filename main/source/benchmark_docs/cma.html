@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The PyCMA CMA-ES Benchmark &#8212; DACBench Documentation 0.2.0 documentation</title>
+    <title>The CMA-ES Benchmark &#8212; DACBench Documentation 0.3.0 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ac9c05f7c49ca1e1f876c6e36360ea26.css" rel="stylesheet">
@@ -23,17 +22,17 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=f129cdf0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="The IOHProfiler ModCMA Benchmark" href="modcma.html" />
+    <link rel="next" title="The SGD Deep Learning Benchmark" href="sgd.html" />
     <link rel="prev" title="The Theory Benchmark" href="theory.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -92,11 +91,11 @@
         <div class="dropdown mt-1">
     <button type="button" class="btn btn-secondary btn-md navbar-btn dropdown-toggle" id="dLabelMore"
         data-toggle="dropdown">
-        v0.2.0
+        v0.3.0
         <span class="caret"></span>
     </button>
     <div class="dropdown-menu list-group-flush py-0" aria-labelledby="dLabelMore">
-        <a class="list-group-item list-group-item-action" href="#">v0.2.0</a>
+        <a class="list-group-item list-group-item-action" href="#">v0.3.0</a>
     </div>
 </div>
       </div>
@@ -121,7 +120,7 @@
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
             <div class="col-12 col-md-3 bd-sidebar"><h4 class="mt-0 mb-0"><a href="../../index.html">DACBench Documentation</a></h4>
-<div class="mb-3">v0.2.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+<div class="mb-3">v0.3.0</div><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -157,8 +156,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="sigmoid.html">
-   The Sigmoid Toy Benchmark
+  <a class="reference internal" href="function_approximation.html">
+   The Function Approximation Toy Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -172,28 +171,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="geometric.html">
-   The Geometric Toy Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="fastdownward.html">
-   The FastDownward Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="theory.html">
    The Theory Benchmark
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   The PyCMA CMA-ES Benchmark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="modcma.html">
-   The IOHProfiler ModCMA Benchmark
+   The CMA-ES Benchmark
   </a>
  </li>
  <li class="toctree-l1">
@@ -285,15 +269,6 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dacbench.benchmarks.cma_benchmark.CMAESBenchmark.get_benchmark">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       CMAESBenchmark.get_benchmark()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dacbench.benchmarks.cma_benchmark.CMAESBenchmark.get_environment">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -350,6 +325,15 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dacbench.envs.cma_es.CMAESEnv.get_normalized_reward">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       CMAESEnv.get_normalized_reward()
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dacbench.envs.cma_es.CMAESEnv.render">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -378,6 +362,15 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dacbench.envs.cma_es.CMAESInstance">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     CMAESInstance
+    </span>
+   </code>
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -399,158 +392,136 @@
               
               <div>
                 
-  <section id="the-pycma-cma-es-benchmark">
-<span id="cma"></span><h1>The PyCMA CMA-ES Benchmark<a class="headerlink" href="#the-pycma-cma-es-benchmark" title="Permalink to this heading">¶</a></h1>
+  <section id="the-cma-es-benchmark">
+<span id="cma"></span><h1>The CMA-ES Benchmark<a class="headerlink" href="#the-cma-es-benchmark" title="Link to this heading">¶</a></h1>
 <div class="line-block">
-<div class="line"><strong>Task:</strong> control the step size of CMA-ES on BBOB functions</div>
+<div class="line"><strong>Task:</strong> control the step size and algorithm components of CMA-ES on BBOB functions</div>
 <div class="line"><strong>Cost:</strong> negative objective value</div>
-<div class="line"><strong>Number of hyperparameters to control:</strong> one float</div>
+<div class="line"><strong>Number of hyperparameters to control:</strong> one float, 10 discrete values with 2-5 options each</div>
 <div class="line"><strong>State Information:</strong> current point, the last 40 objective values, population size, current step size, the deltas between the last 80 objective values, the deltas between the last 40 step sizes</div>
 <div class="line"><strong>Noise Level:</strong> fairly large, depends on target function</div>
 <div class="line"><strong>Instance space:</strong> the BBOB functions with ids, starting point and starting sigma as well as population size</div>
 </div>
-<p>This benchmark uses the PyCMA implementation to control the step size of the CMA-ES algorithm on the BBOB function set.
+<p>This benchmark uses the ModCMA implementation to control the step size and algorithm components of the CMA-ES algorithm.
 The goal in the optimization is to find the global function minimum before the cutoff, so the cost is defined as the current negativ objective value.</p>
 <p>The BBOB functions provide a varied instance space that is well suited for testing generalization capabilites of DAC methods.
 Due to this large instance space and very different scales of objective values (and thus cost), the CMA-ES benchmark is one of the more difficult to solve ones in DACBench.</p>
-<p><em>The CMA-ES benchmark was constructed by Shala et al. for the paper `”Learning Step-size Adaptation in CMA-ES” &lt;https://ml.informatik.uni-freiburg.de/wp-content/uploads/papers/20-PPSN-LTO-CMA.pdf&gt;`_ at PPSN 2020</em></p>
-<span class="target" id="module-dacbench.benchmarks.cma_benchmark"></span><dl class="py class">
+<p><em>The CMA-ES benchmark was constructed by Shala et al. for the paper `”Learning Step-size Adaptation in CMA-ES” &lt;https://ml.informatik.uni-freiburg.de/wp-content/uploads/papers/20-PPSN-LTO-CMA.pdf&gt;`_ at PPSN 2020</em> and extended afterwards to include the ModCMA implementation.</p>
+<p id="module-dacbench.benchmarks.cma_benchmark">CMA ES Benchmark.</p>
+<dl class="py class">
 <dt class="sig sig-object py" id="dacbench.benchmarks.cma_benchmark.CMAESBenchmark">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.benchmarks.cma_benchmark.</span></span><span class="sig-name descname"><span class="pre">CMAESBenchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/cma_benchmark.html#CMAESBenchmark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.cma_benchmark.CMAESBenchmark" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.benchmarks.cma_benchmark.</span></span><span class="sig-name descname"><span class="pre">CMAESBenchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/cma_benchmark.html#CMAESBenchmark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.cma_benchmark.CMAESBenchmark" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark" title="dacbench.abstract_benchmark.AbstractBenchmark"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractBenchmark</span></code></a></p>
-<p>Benchmark with default configuration &amp; relevant functions for CMA-ES</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="dacbench.benchmarks.cma_benchmark.CMAESBenchmark.get_benchmark">
-<span class="sig-name descname"><span class="pre">get_benchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/cma_benchmark.html#CMAESBenchmark.get_benchmark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.cma_benchmark.CMAESBenchmark.get_benchmark" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get benchmark from the LTO paper</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>seed</strong> (<em>int</em>) – Environment seed</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>env</strong> – CMAES environment</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#dacbench.envs.cma_es.CMAESEnv" title="dacbench.envs.cma_es.CMAESEnv">CMAESEnv</a></p>
-</dd>
-</dl>
-</dd></dl>
-
+<p>Benchmark for controlling the step size of CMA-ES on BBOB functions.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.benchmarks.cma_benchmark.CMAESBenchmark.get_environment">
-<span class="sig-name descname"><span class="pre">get_environment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/cma_benchmark.html#CMAESBenchmark.get_environment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.cma_benchmark.CMAESBenchmark.get_environment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return CMAESEnv env with current configuration</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>CMAES environment</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#dacbench.envs.cma_es.CMAESEnv" title="dacbench.envs.cma_es.CMAESEnv">CMAESEnv</a></p>
+<span class="sig-name descname"><span class="pre">get_environment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/cma_benchmark.html#CMAESBenchmark.get_environment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.cma_benchmark.CMAESBenchmark.get_environment" title="Link to this definition">¶</a></dt>
+<dd><p>Return SGDEnv env with current configuration.</p>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>SGDEnv</dt><dd><p>SGD environment</p>
 </dd>
 </dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.benchmarks.cma_benchmark.CMAESBenchmark.read_instance_set">
-<span class="sig-name descname"><span class="pre">read_instance_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/cma_benchmark.html#CMAESBenchmark.read_instance_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.cma_benchmark.CMAESBenchmark.read_instance_set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read path of instances from config into list</p>
+<span class="sig-name descname"><span class="pre">read_instance_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/benchmarks/cma_benchmark.html#CMAESBenchmark.read_instance_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.benchmarks.cma_benchmark.CMAESBenchmark.read_instance_set" title="Link to this definition">¶</a></dt>
+<dd><p>Read path of instances from config into list.</p>
 </dd></dl>
 
 </dd></dl>
 
-<span class="target" id="module-dacbench.envs.cma_es"></span><p>CMA-ES environment adapted from CMAWorld in
-“Learning Step-size Adaptation in CMA-ES”
-by G.Shala and A. Biedenkapp and N.Awad and S. Adriaensen and M.Lindauer and F. Hutter.
-Original author: Gresa Shala</p>
+<p id="module-dacbench.envs.cma_es">CMA ES Environment.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="dacbench.envs.cma_es.CMAESEnv">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.envs.cma_es.</span></span><span class="sig-name descname"><span class="pre">CMAESEnv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../multi_agent_dac.html#dacbench.abstract_env.AbstractEnv" title="dacbench.abstract_env.AbstractEnv"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEnv</span></code></a></p>
-<p>Environment to control the step size of CMA-ES</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.envs.cma_es.</span></span><span class="sig-name descname"><span class="pre">CMAESEnv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../multi_agent_dac.html#dacbench.abstract_env.AbstractMADACEnv" title="dacbench.abstract_env.AbstractMADACEnv"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractMADACEnv</span></code></a></p>
+<p>The CMA ES environment controlles the step size on BBOB functions.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.cma_es.CMAESEnv.close">
-<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.close" title="Permalink to this definition">¶</a></dt>
-<dd><p>No additional cleanup necessary</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Cleanup flag</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.close" title="Link to this definition">¶</a></dt>
+<dd><p>Closes the environment.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.cma_es.CMAESEnv.get_default_reward">
-<span class="sig-name descname"><span class="pre">get_default_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.get_default_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.get_default_reward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute reward</p>
+<span class="sig-name descname"><span class="pre">get_default_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.get_default_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.get_default_reward" title="Link to this definition">¶</a></dt>
+<dd><p>The default reward function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Reward</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>_</strong> (<em>_type_</em>) – Empty parameter, which can be used when overriding</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The calculated reward</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.cma_es.CMAESEnv.get_default_state">
-<span class="sig-name descname"><span class="pre">get_default_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.get_default_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.get_default_state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gather state description</p>
+<span class="sig-name descname"><span class="pre">get_default_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.get_default_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.get_default_state" title="Link to this definition">¶</a></dt>
+<dd><p>Default state function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Environment state</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>_</strong> (<em>_type_</em>) – Empty parameter, which can be used when overriding</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>dict</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The current state</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dacbench.envs.cma_es.CMAESEnv.get_normalized_reward">
+<span class="sig-name descname"><span class="pre">get_normalized_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.get_normalized_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.get_normalized_reward" title="Link to this definition">¶</a></dt>
+<dd><p>Normalize each reward within domain bounds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>_</strong> (<em>_type_</em>) – Empty parameter, which can be used when overriding</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The calculated reward</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.cma_es.CMAESEnv.render">
-<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'human'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.render" title="Permalink to this definition">¶</a></dt>
-<dd><p>Render env in human mode</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>mode</strong> (<em>str</em>) – Execution mode</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'human'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.render" title="Link to this definition">¶</a></dt>
+<dd><p>Render progress.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.cma_es.CMAESEnv.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reset environment</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Environment state</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>np.array</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.reset" title="Link to this definition">¶</a></dt>
+<dd><p>Reset the environment.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dacbench.envs.cma_es.CMAESEnv.step">
-<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute environment step</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>action</strong> (<em>list</em>) – action to execute</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>state, reward, done, info</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.array, float, bool, dict</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESEnv.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESEnv.step" title="Link to this definition">¶</a></dt>
+<dd><p>Make one step of the environment.</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dacbench.envs.cma_es.CMAESInstance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dacbench.envs.cma_es.</span></span><span class="sig-name descname"><span class="pre">CMAESInstance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractFunction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elitist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orthogonal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequential</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_convergence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size_adaptation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mirrored</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_sampler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights_option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_restart</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_correction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/dacbench/envs/cma_es.html#CMAESInstance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dacbench.envs.cma_es.CMAESInstance" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>CMA-ES Instance.</p>
 </dd></dl>
 
 </section>
@@ -568,10 +539,10 @@ Original author: Gresa Shala</p>
             <p class="prev-next-title">The Theory Benchmark</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="modcma.html" title="next page">
+    <a class='right-next' id="next-link" href="sgd.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The IOHProfiler ModCMA Benchmark</p>
+        <p class="prev-next-title">The SGD Deep Learning Benchmark</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -596,7 +567,7 @@ Original author: Gresa Shala</p>
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-6.1.3. Template is modified version of <a
+8.0.2. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>
