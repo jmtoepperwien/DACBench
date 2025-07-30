@@ -21,13 +21,13 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
     <script src="../../../_static/documentation_options.js?v=f129cdf0"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -261,20 +261,20 @@
   <h1>Source code for dacbench.benchmarks.toysgd_benchmark</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Benchmark for Toysgd.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">import</span> <span class="nn">ConfigSpace</span> <span class="k">as</span> <span class="nn">CS</span>  <span class="c1"># noqa: N817</span>
-<span class="kn">import</span> <span class="nn">ConfigSpace.hyperparameters</span> <span class="k">as</span> <span class="nn">CSH</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">gymnasium</span> <span class="kn">import</span> <span class="n">spaces</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ConfigSpace</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">CS</span>  <span class="c1"># noqa: N817</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ConfigSpace.hyperparameters</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">CSH</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gymnasium</span><span class="w"> </span><span class="kn">import</span> <span class="n">spaces</span>
 
 <span class="c1"># from dacbench.envs.toysgd import create_noisy_quadratic_instance_set</span>
-<span class="kn">from</span> <span class="nn">dacbench.abstract_benchmark</span> <span class="kn">import</span> <span class="n">AbstractBenchmark</span><span class="p">,</span> <span class="n">objdict</span>
-<span class="kn">from</span> <span class="nn">dacbench.envs</span> <span class="kn">import</span> <span class="n">ToySGDEnv</span><span class="p">,</span> <span class="n">ToySGDInstance</span>
-<span class="kn">from</span> <span class="nn">dacbench.envs.env_utils.toy_functions</span> <span class="kn">import</span> <span class="n">get_toy_function</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.abstract_benchmark</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractBenchmark</span><span class="p">,</span> <span class="n">objdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.envs</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToySGDEnv</span><span class="p">,</span> <span class="n">ToySGDInstance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.envs.env_utils.toy_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_toy_function</span>
 
 <span class="n">DEFAULT_CFG_SPACE</span> <span class="o">=</span> <span class="n">CS</span><span class="o">.</span><span class="n">ConfigurationSpace</span><span class="p">()</span>
 <span class="n">LR</span> <span class="o">=</span> <span class="n">CSH</span><span class="o">.</span><span class="n">UniformFloatHyperparameter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;0_log_learning_rate&quot;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -327,10 +327,10 @@
 
 <div class="viewcode-block" id="ToySGDBenchmark">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark">[docs]</a>
-<span class="k">class</span> <span class="nc">ToySGDBenchmark</span><span class="p">(</span><span class="n">AbstractBenchmark</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ToySGDBenchmark</span><span class="p">(</span><span class="n">AbstractBenchmark</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SGD Benchmark with toy functions.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize SGD Benchmark.</span>
 
 <span class="sd">        Parameters</span>
@@ -348,7 +348,7 @@
 
 <div class="viewcode-block" id="ToySGDBenchmark.get_environment">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.get_environment">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return SGDEnv env with current configuration.</span>
 
 <span class="sd">        Returns:</span>
@@ -371,7 +371,7 @@
 
 <div class="viewcode-block" id="ToySGDBenchmark.read_instance_set">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.benchmarks.toysgd_benchmark.ToySGDBenchmark.read_instance_set">[docs]</a>
-    <span class="k">def</span> <span class="nf">read_instance_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_instance_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read path of instances from config into list.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">test</span><span class="p">:</span>
             <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">test_set_path</span><span class="p">)</span>
@@ -445,7 +445,7 @@
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-8.0.2. Template is modified version of <a
+8.1.3. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

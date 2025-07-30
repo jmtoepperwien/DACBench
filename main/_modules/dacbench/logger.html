@@ -21,13 +21,13 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
     <script src="../../_static/documentation_options.js?v=f129cdf0"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -261,28 +261,28 @@
   <h1>Source code for dacbench.logger</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Logger helper.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">ChainMap</span><span class="p">,</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
-<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChainMap</span><span class="p">,</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numbers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Number</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">dacbench</span> <span class="kn">import</span> <span class="n">AbstractBenchmark</span><span class="p">,</span> <span class="n">AbstractEnv</span>
-    <span class="kn">from</span> <span class="nn">dacbench.abstract_agent</span> <span class="kn">import</span> <span class="n">AbstractDACBenchAgent</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">dacbench</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractBenchmark</span><span class="p">,</span> <span class="n">AbstractEnv</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.abstract_agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractDACBenchAgent</span>
 
 
 <div class="viewcode-block" id="load_logs">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.load_logs">[docs]</a>
-<span class="k">def</span> <span class="nf">load_logs</span><span class="p">(</span><span class="n">log_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_logs</span><span class="p">(</span><span class="n">log_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads the logs from a jsonl written by any logger.</span>
 <span class="sd">    The result is the list of dicts in the format:</span>
 <span class="sd">    {</span>
@@ -313,7 +313,7 @@
 
 <div class="viewcode-block" id="split">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.split">[docs]</a>
-<span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="n">predicate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">list</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="n">predicate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">list</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Splits the iterable into two list depending on the result of predicate.</span>
 
 <span class="sd">    Parameters</span>
@@ -338,7 +338,7 @@
 
 <div class="viewcode-block" id="flatten_log_entry">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.flatten_log_entry">[docs]</a>
-<span class="k">def</span> <span class="nf">flatten_log_entry</span><span class="p">(</span><span class="n">log_entry</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">flatten_log_entry</span><span class="p">(</span><span class="n">log_entry</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Transforms a log entry.</span>
 <span class="sd">    From:</span>
 <span class="sd">    {</span>
@@ -372,7 +372,7 @@
 
 <div class="viewcode-block" id="list_to_tuple">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.list_to_tuple">[docs]</a>
-<span class="k">def</span> <span class="nf">list_to_tuple</span><span class="p">(</span><span class="n">list_</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">list_to_tuple</span><span class="p">(</span><span class="n">list_</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Recursively transforms a list of lists into tuples of tuples.</span>
 
 <span class="sd">    Parameters</span>
@@ -392,7 +392,7 @@
 
 <div class="viewcode-block" id="log2dataframe">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.log2dataframe">[docs]</a>
-<span class="k">def</span> <span class="nf">log2dataframe</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log2dataframe</span><span class="p">(</span>
     <span class="n">logs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="n">drop_columns</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a list of log entries to a pandas dataframe.</span>
@@ -444,7 +444,7 @@
 
 <div class="viewcode-block" id="seed_mapper">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.seed_mapper">[docs]</a>
-<span class="k">def</span> <span class="nf">seed_mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">seed_mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for seeding.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
@@ -454,7 +454,7 @@
 
 <div class="viewcode-block" id="instance_mapper">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.instance_mapper">[docs]</a>
-<span class="k">def</span> <span class="nf">instance_mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">instance_mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function to get instance id.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
@@ -464,7 +464,7 @@
 
 <div class="viewcode-block" id="AbstractLogger">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.AbstractLogger">[docs]</a>
-<span class="k">class</span> <span class="nc">AbstractLogger</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AbstractLogger</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Logger interface.</span>
 <span class="sd">    The logger classes provide a way of writing structured logs as jsonl files and also</span>
 <span class="sd">    help to track information like current episode, step, time ...</span>
@@ -476,7 +476,7 @@
         <span class="s2">&quot;primitive&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">],</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
@@ -518,7 +518,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">additional_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">additional_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Log additional info.&quot;&quot;&quot;</span>
         <span class="n">additional_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_additional_info</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">auto_info</span> <span class="o">=</span> <span class="p">{</span>
@@ -533,7 +533,7 @@
 
 <div class="viewcode-block" id="AbstractLogger.set_env">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.AbstractLogger.set_env">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">AbstractEnv</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">AbstractEnv</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Needed to infer automatically logged information like the instance id.</span>
 
 <span class="sd">        Parameters</span>
@@ -545,7 +545,7 @@
 
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_pretty_valid_types</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_pretty_valid_types</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a string pretty string representation of the types</span>
 <span class="sd">        that can be logged as values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -556,7 +556,7 @@
         <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">type_</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">type_</span> <span class="ow">in</span> <span class="n">valid_types</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_init_logging_dir</span><span class="p">(</span><span class="n">log_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_logging_dir</span><span class="p">(</span><span class="n">log_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the logging directory.</span>
 
 <span class="sd">        Parameters</span>
@@ -573,7 +573,7 @@
 
 <div class="viewcode-block" id="AbstractLogger.is_of_valid_type">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.AbstractLogger.is_of_valid_type">[docs]</a>
-    <span class="k">def</span> <span class="nf">is_of_valid_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_of_valid_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the value of any type in the logger&#39;s valid types.</span>
 
 <span class="sd">        Parameters</span>
@@ -598,7 +598,7 @@
 <div class="viewcode-block" id="AbstractLogger.close">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.AbstractLogger.close">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes sure, that all remaining entries in the are written</span>
 <span class="sd">        to file and the file is closed.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
@@ -607,7 +607,7 @@
 <div class="viewcode-block" id="AbstractLogger.next_step">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.AbstractLogger.next_step">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">next_step</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_step</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call at the end of the step. Updates the internal state and</span>
 <span class="sd">        dumps the information of the last step into a json.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
@@ -616,14 +616,14 @@
 <div class="viewcode-block" id="AbstractLogger.next_episode">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.AbstractLogger.next_episode">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">next_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call at the end of episode. See next_step.&quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="AbstractLogger.write">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.AbstractLogger.write">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes buffered logs to file.</span>
 <span class="sd">        Invoke manually if you want to load logs during a run.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
@@ -632,7 +632,7 @@
 <div class="viewcode-block" id="AbstractLogger.log">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.AbstractLogger.log">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes value to list of values and save the current time for key.</span>
 
 <span class="sd">        Parameters</span>
@@ -649,7 +649,7 @@
 <div class="viewcode-block" id="AbstractLogger.log_dict">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.AbstractLogger.log_dict">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">log_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">log_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Alternative to log if more the one value should be logged at once.</span>
 
 <span class="sd">        Parameters</span>
@@ -662,7 +662,7 @@
 <div class="viewcode-block" id="AbstractLogger.log_space">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.AbstractLogger.log_space">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">log_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">space_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">log_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">space_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Special for logging gym.spaces.</span>
 
 <span class="sd">        Currently three types are supported:</span>
@@ -686,14 +686,14 @@
 
 <div class="viewcode-block" id="ModuleLogger">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger">[docs]</a>
-<span class="k">class</span> <span class="nc">ModuleLogger</span><span class="p">(</span><span class="n">AbstractLogger</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ModuleLogger</span><span class="p">(</span><span class="n">AbstractLogger</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A logger for handling logging of one module.</span>
 <span class="sd">    e.g. a wrapper or toplevel general logging.</span>
 
 <span class="sd">    Don&#39;t create manually use Logger to manage ModuleLoggers</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
         <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -734,7 +734,7 @@
 
 <div class="viewcode-block" id="ModuleLogger.get_logfile">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.get_logfile">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_logfile</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_logfile</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get logfile name.</span>
 
 <span class="sd">        Returns:</span>
@@ -746,7 +746,7 @@
 
 <div class="viewcode-block" id="ModuleLogger.close">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.close">[docs]</a>
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes sure, that all remaining entries in the are written to file</span>
 <span class="sd">        and the file is closed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -757,7 +757,7 @@
 
 <div class="viewcode-block" id="ModuleLogger.__del__">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.__del__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes sure, that all remaining entries in the are written to file</span>
 <span class="sd">        and the file is closed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -766,7 +766,7 @@
 
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">__json_default</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__json_default</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add supoort for dumping numpy arrays and numbers to json.</span>
 
 <span class="sd">        Parameters</span>
@@ -780,7 +780,7 @@
             <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2"> not supported&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__end_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__end_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span><span class="p">[</span><span class="s2">&quot;step&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span><span class="p">[</span><span class="s2">&quot;episode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">episode</span>
@@ -791,12 +791,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__init_dict</span><span class="p">()</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">__init_dict</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__init_dict</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ModuleLogger.reset_episode">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.reset_episode">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Resets the episode and step. Be aware that this can lead to ambitious keys</span>
 <span class="sd">        if no instance or seed or other identifying additional info is set.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -805,13 +805,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">0</span></div>
 
 
-    <span class="k">def</span> <span class="nf">__reset_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__reset_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__end_step</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">0</span>
 
 <div class="viewcode-block" id="ModuleLogger.next_step">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.next_step">[docs]</a>
-    <span class="k">def</span> <span class="nf">next_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call at the end of the step. Updates the internal state and dumps</span>
 <span class="sd">        the information of the last step into a json.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -826,7 +826,7 @@
 
 <div class="viewcode-block" id="ModuleLogger.next_episode">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.next_episode">[docs]</a>
-    <span class="k">def</span> <span class="nf">next_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes buffered logs to file. Invoke manually if you want to load logs</span>
 <span class="sd">        during a run.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -841,7 +841,7 @@
 
 <div class="viewcode-block" id="ModuleLogger.write">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.write">[docs]</a>
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes buffered logs to file. Invoke manually if you want to load logs</span>
 <span class="sd">        during a run.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -849,7 +849,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__buffer_to_file</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="nf">__buffer_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__buffer_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -858,7 +858,7 @@
 
 <div class="viewcode-block" id="ModuleLogger.set_additional_info">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.set_additional_info">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_additional_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_additional_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Can be used to log additional information for each step</span>
 <span class="sd">        e.g. for seed and instance id.</span>
 
@@ -873,7 +873,7 @@
 
 <div class="viewcode-block" id="ModuleLogger.log">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.log">[docs]</a>
-    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="nb">list</span> <span class="o">|</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">bool</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes value to list of values and save the current time for key.</span>
@@ -899,7 +899,7 @@
 
 <div class="viewcode-block" id="ModuleLogger.log_dict">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.log_dict">[docs]</a>
-    <span class="k">def</span> <span class="nf">log_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">log_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Alternative to log if more the one value should be logged at once.</span>
 
 <span class="sd">        Parameters</span>
@@ -913,7 +913,7 @@
 
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">__space_dict</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">space_info</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__space_dict</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">space_info</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 
@@ -960,7 +960,7 @@
 
 <div class="viewcode-block" id="ModuleLogger.log_space">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.ModuleLogger.log_space">[docs]</a>
-    <span class="k">def</span> <span class="nf">log_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">space_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">log_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">space_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Special for logging gym.spaces.</span>
 
 <span class="sd">        Currently three types are supported:</span>
@@ -987,7 +987,7 @@
 
 <div class="viewcode-block" id="Logger">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger">[docs]</a>
-<span class="k">class</span> <span class="nc">Logger</span><span class="p">(</span><span class="n">AbstractLogger</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Logger</span><span class="p">(</span><span class="n">AbstractLogger</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A logger that manages the creation of the module loggers.</span>
 <span class="sd">    To get a ModuleLogger for you module (e.g. wrapper) call</span>
 <span class="sd">    module_logger = Logger(...).add_module(&quot;my_wrapper&quot;).</span>
@@ -998,7 +998,7 @@
 <span class="sd">    simple call logger.next_episode() or logger.next_step().</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
@@ -1030,7 +1030,7 @@
 
 <div class="viewcode-block" id="Logger.set_env">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.set_env">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">AbstractEnv</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">AbstractEnv</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes information about the environment.</span>
 
 <span class="sd">        Parameters</span>
@@ -1046,7 +1046,7 @@
 
 <div class="viewcode-block" id="Logger.close">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.close">[docs]</a>
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes sure, that all remaining entries (from all sublogger) are written to</span>
 <span class="sd">        files and the files are closed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1056,14 +1056,14 @@
 
 <div class="viewcode-block" id="Logger.__del__">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.__del__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Removes Logger.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Logger.next_step">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.next_step">[docs]</a>
-    <span class="k">def</span> <span class="nf">next_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call at the end of the step. Updates the internal state of all subloggers and</span>
 <span class="sd">        dumps the information of the last step into a json.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1073,7 +1073,7 @@
 
 <div class="viewcode-block" id="Logger.next_episode">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.next_episode">[docs]</a>
-    <span class="k">def</span> <span class="nf">next_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call at the end of episode. See next_step.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">module_logger</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_logger</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">module_logger</span><span class="o">.</span><span class="n">next_episode</span><span class="p">()</span></div>
@@ -1081,7 +1081,7 @@
 
 <div class="viewcode-block" id="Logger.reset_episode">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.reset_episode">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Resets in all modules.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">module_logger</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_logger</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">module_logger</span><span class="o">.</span><span class="n">reset_episode</span><span class="p">()</span></div>
@@ -1089,7 +1089,7 @@
 
 <div class="viewcode-block" id="Logger.write">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.write">[docs]</a>
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes buffered logs to file.</span>
 <span class="sd">        Invoke manually if you want to load logs during a run.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1099,7 +1099,7 @@
 
 <div class="viewcode-block" id="Logger.add_module">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.add_module">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModuleLogger</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModuleLogger</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a sub-logger. For more details see class level documentation.</span>
 
 <span class="sd">        Parameters</span>
@@ -1137,7 +1137,7 @@
 
 <div class="viewcode-block" id="Logger.add_agent">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.add_agent">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_agent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent</span><span class="p">:</span> <span class="n">AbstractDACBenchAgent</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_agent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent</span><span class="p">:</span> <span class="n">AbstractDACBenchAgent</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes information about the agent.</span>
 
 <span class="sd">        Parameters</span>
@@ -1153,7 +1153,7 @@
 
 <div class="viewcode-block" id="Logger.add_benchmark">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.add_benchmark">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_benchmark</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">:</span> <span class="n">AbstractBenchmark</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_benchmark</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">:</span> <span class="n">AbstractBenchmark</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add benchmark to logger.</span>
 
 <span class="sd">        Parameters</span>
@@ -1167,7 +1167,7 @@
 
 <div class="viewcode-block" id="Logger.set_additional_info">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.set_additional_info">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_additional_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_additional_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add additional info.</span>
 
 <span class="sd">        Parameters</span>
@@ -1182,7 +1182,7 @@
 
 <div class="viewcode-block" id="Logger.log">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.log">[docs]</a>
-    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">module</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Log a key-value pair to module.</span>
 
 <span class="sd">        Parameters</span>
@@ -1202,7 +1202,7 @@
 
 <div class="viewcode-block" id="Logger.log_space">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.log_space">[docs]</a>
-    <span class="k">def</span> <span class="nf">log_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">space_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">log_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">space_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Log a key-value pair to module with optional info.</span>
 
 <span class="sd">        Parameters</span>
@@ -1224,7 +1224,7 @@
 
 <div class="viewcode-block" id="Logger.log_dict">
 <a class="viewcode-back" href="../../source/logging.html#dacbench.logger.Logger.log_dict">[docs]</a>
-    <span class="k">def</span> <span class="nf">log_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">log_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">module</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Log a data dict to module.</span>
 
 <span class="sd">        Parameters</span>
@@ -1268,7 +1268,7 @@
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-8.0.2. Template is modified version of <a
+8.1.3. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

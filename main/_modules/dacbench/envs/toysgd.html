@@ -21,13 +21,13 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
     <script src="../../../_static/documentation_options.js?v=f129cdf0"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -261,23 +261,23 @@
   <h1>Source code for dacbench.envs.toysgd</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Environment for sgd with toy functions.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">dacbench</span> <span class="kn">import</span> <span class="n">AbstractMADACEnv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractMADACEnv</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">dacbench.envs.env_utils.toy_functions</span> <span class="kn">import</span> <span class="n">AbstractFunction</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.envs.env_utils.toy_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractFunction</span>
 
 
 <div class="viewcode-block" id="ToySGDInstance">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.envs.toysgd.ToySGDInstance">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">ToySGDInstance</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ToySGDInstance</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Toy SGD Instance.&quot;&quot;&quot;</span>
 
     <span class="n">function</span><span class="p">:</span> <span class="n">AbstractFunction</span></div>
@@ -286,7 +286,7 @@
 
 <div class="viewcode-block" id="ToySGDEnv">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.envs.toysgd.ToySGDEnv">[docs]</a>
-<span class="k">class</span> <span class="nc">ToySGDEnv</span><span class="p">(</span><span class="n">AbstractMADACEnv</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ToySGDEnv</span><span class="p">(</span><span class="n">AbstractMADACEnv</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Optimize toy functions with SGD + Momentum.</span>
 
 <span class="sd">    Action: [log_learning_rate, log_momentum] (log base 10)</span>
@@ -303,7 +303,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Init env.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
@@ -325,7 +325,7 @@
 
 <div class="viewcode-block" id="ToySGDEnv.step">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.envs.toysgd.ToySGDEnv.step">[docs]</a>
-    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Take one step with SGD.</span>
@@ -378,7 +378,7 @@
 
 <div class="viewcode-block" id="ToySGDEnv.reset">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.envs.toysgd.ToySGDEnv.reset">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset environment.</span>
 
 <span class="sd">        Parameters</span>
@@ -416,7 +416,7 @@
 
 <div class="viewcode-block" id="ToySGDEnv.get_default_reward">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.envs.toysgd.ToySGDEnv.get_default_reward">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_default_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_default_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Default reward: negative log regret.&quot;&quot;&quot;</span>
         <span class="n">log_regret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">objective_function</span><span class="o">.</span><span class="n">fmin</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_cur</span><span class="p">))</span>
         <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">log_regret</span><span class="p">)</span></div>
@@ -424,7 +424,7 @@
 
 <div class="viewcode-block" id="ToySGDEnv.get_default_state">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.envs.toysgd.ToySGDEnv.get_default_state">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_default_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_default_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Default state: remaining_budget, gradient, learning_rate, momentum.&quot;&quot;&quot;</span>
         <span class="c1"># TODO: add instance description?</span>
         <span class="n">remaining_budget</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_step</span>
@@ -438,9 +438,9 @@
 
 <div class="viewcode-block" id="ToySGDEnv.render">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.envs.toysgd.ToySGDEnv.render">[docs]</a>
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Render progress.&quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
         <span class="n">history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.05</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">history</span><span class="p">),</span> <span class="mf">1.05</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">history</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
@@ -471,7 +471,7 @@
 
 <div class="viewcode-block" id="ToySGDEnv.close">
 <a class="viewcode-back" href="../../../source/benchmark_docs/toy_sgd.html#dacbench.envs.toysgd.ToySGDEnv.close">[docs]</a>
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Close env.&quot;&quot;&quot;</span></div>
 </div>
 
@@ -503,7 +503,7 @@
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-8.0.2. Template is modified version of <a
+8.1.3. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

@@ -21,13 +21,13 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
     <script src="../../../_static/documentation_options.js?v=f129cdf0"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -261,18 +261,18 @@
   <h1>Source code for dacbench.benchmarks.theory_benchmark</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Theory Benchmark.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">import</span> <span class="nn">ConfigSpace</span> <span class="k">as</span> <span class="nn">CS</span>  <span class="c1"># noqa: N817</span>
-<span class="kn">import</span> <span class="nn">ConfigSpace.hyperparameters</span> <span class="k">as</span> <span class="nn">CSH</span>
-<span class="kn">import</span> <span class="nn">gymnasium</span> <span class="k">as</span> <span class="nn">gym</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ConfigSpace</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">CS</span>  <span class="c1"># noqa: N817</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ConfigSpace.hyperparameters</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">CSH</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gymnasium</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gym</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">dacbench.abstract_benchmark</span> <span class="kn">import</span> <span class="n">AbstractBenchmark</span><span class="p">,</span> <span class="n">objdict</span>
-<span class="kn">from</span> <span class="nn">dacbench.envs.theory</span> <span class="kn">import</span> <span class="n">TheoryEnv</span><span class="p">,</span> <span class="n">TheoryEnvDiscrete</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.abstract_benchmark</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractBenchmark</span><span class="p">,</span> <span class="n">objdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.envs.theory</span><span class="w"> </span><span class="kn">import</span> <span class="n">TheoryEnv</span><span class="p">,</span> <span class="n">TheoryEnvDiscrete</span>
 
 <span class="n">INFO</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;identifier&quot;</span><span class="p">:</span> <span class="s2">&quot;Theory&quot;</span><span class="p">,</span>
@@ -307,10 +307,10 @@
 
 <div class="viewcode-block" id="TheoryBenchmark">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.benchmarks.theory_benchmark.TheoryBenchmark">[docs]</a>
-<span class="k">class</span> <span class="nc">TheoryBenchmark</span><span class="p">(</span><span class="n">AbstractBenchmark</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TheoryBenchmark</span><span class="p">(</span><span class="n">AbstractBenchmark</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Benchmark with various settings for (1+(lbd, lbd))-GA and RLS.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a theory benchmark.</span>
 
 <span class="sd">        Parameters</span>
@@ -380,7 +380,7 @@
 
 <div class="viewcode-block" id="TheoryBenchmark.create_observation_space_from_description">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.benchmarks.theory_benchmark.TheoryBenchmark.create_observation_space_from_description">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_observation_space_from_description</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_observation_space_from_description</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">obs_description</span><span class="p">,</span> <span class="n">env_class</span><span class="o">=</span><span class="n">TheoryEnvDiscrete</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a gym observation space (Box only) based on a string containing</span>
@@ -401,7 +401,7 @@
 
 <div class="viewcode-block" id="TheoryBenchmark.get_environment">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.benchmarks.theory_benchmark.TheoryBenchmark.get_environment">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_env</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_env</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return an environment with current configuration.</span>
 
 <span class="sd">        Parameters:</span>
@@ -426,7 +426,7 @@
 
 <div class="viewcode-block" id="TheoryBenchmark.read_instance_set">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.benchmarks.theory_benchmark.TheoryBenchmark.read_instance_set">[docs]</a>
-    <span class="k">def</span> <span class="nf">read_instance_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_instance_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read instance set from file</span>
 <span class="sd">        we look at the current directory first,</span>
 <span class="sd">        if the file doesn&#39;t exist, we look in &lt;DACBench&gt;/dacbench/instance_sets/theory/.</span>
@@ -484,7 +484,7 @@
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-8.0.2. Template is modified version of <a
+8.1.3. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

@@ -21,13 +21,13 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
     <script src="../../../_static/documentation_options.js?v=f129cdf0"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -261,21 +261,21 @@
   <h1>Source code for dacbench.envs.sgd</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;SGD environment.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 
-<span class="kn">from</span> <span class="nn">dacbench</span> <span class="kn">import</span> <span class="n">AbstractMADACEnv</span>
-<span class="kn">from</span> <span class="nn">dacbench.envs.env_utils</span> <span class="kn">import</span> <span class="n">sgd_utils</span>
-<span class="kn">from</span> <span class="nn">dacbench.envs.env_utils.sgd_utils</span> <span class="kn">import</span> <span class="n">random_torchvision_loader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractMADACEnv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.envs.env_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">sgd_utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.envs.env_utils.sgd_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">random_torchvision_loader</span>
 
 
 <div class="viewcode-block" id="test">
 <a class="viewcode-back" href="../../../source/benchmark_docs/sgd.html#dacbench.envs.sgd.test">[docs]</a>
-<span class="k">def</span> <span class="nf">test</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span>
     <span class="n">model</span><span class="p">,</span>
     <span class="n">loss_function</span><span class="p">,</span>
     <span class="n">loader</span><span class="p">,</span>
@@ -313,7 +313,7 @@
 
 <div class="viewcode-block" id="forward_backward">
 <a class="viewcode-back" href="../../../source/benchmark_docs/sgd.html#dacbench.envs.sgd.forward_backward">[docs]</a>
-<span class="k">def</span> <span class="nf">forward_backward</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">loss_function</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">forward_backward</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">loss_function</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Do a forward and a backward pass for given `model` for `loss_function`.</span>
 
 <span class="sd">    Returns:</span>
@@ -331,7 +331,7 @@
 
 <div class="viewcode-block" id="run_epoch">
 <a class="viewcode-back" href="../../../source/benchmark_docs/sgd.html#dacbench.envs.sgd.run_epoch">[docs]</a>
-<span class="k">def</span> <span class="nf">run_epoch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">loss_function</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_epoch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">loss_function</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a single epoch of training for given `model` with `loss_function`.&quot;&quot;&quot;</span>
     <span class="n">last_loss</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">running_loss</span> <span class="o">=</span> <span class="mi">0</span>
@@ -352,7 +352,7 @@
 <div class="viewcode-block" id="SGDInstance">
 <a class="viewcode-back" href="../../../source/benchmark_docs/sgd.html#dacbench.envs.sgd.SGDInstance">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">SGDInstance</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SGDInstance</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SGD Instance.&quot;&quot;&quot;</span>
 
     <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span>
@@ -369,7 +369,7 @@
 
 <div class="viewcode-block" id="SGDEnv">
 <a class="viewcode-back" href="../../../source/benchmark_docs/sgd.html#dacbench.envs.sgd.SGDEnv">[docs]</a>
-<span class="k">class</span> <span class="nc">SGDEnv</span><span class="p">(</span><span class="n">AbstractMADACEnv</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SGDEnv</span><span class="p">(</span><span class="n">AbstractMADACEnv</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The SGD DAC Environment implements the problem of dynamically configuring</span>
 <span class="sd">    the learning rate hyperparameter of a neural network optimizer</span>
 <span class="sd">    (more specifically, torch.optim.AdamW) for a supervised learning task.</span>
@@ -386,7 +386,7 @@
 
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;render_modes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;human&quot;</span><span class="p">]}</span>  <span class="c1"># noqa: RUF012</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Init env.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
         <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;seed&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
@@ -406,7 +406,7 @@
 
 <div class="viewcode-block" id="SGDEnv.step">
 <a class="viewcode-back" href="../../../source/benchmark_docs/sgd.html#dacbench.envs.sgd.SGDEnv.step">[docs]</a>
-    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the parameters of the neural network using the given learning rate lr,</span>
 <span class="sd">        in the direction specified by AdamW, and if not done (crashed/cutoff reached),</span>
 <span class="sd">        performs another forward/backward pass (update only in the next step).</span>
@@ -502,7 +502,7 @@
 
 <div class="viewcode-block" id="SGDEnv.reset">
 <a class="viewcode-back" href="../../../source/benchmark_docs/sgd.html#dacbench.envs.sgd.SGDEnv.reset">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the neural network, data loaders, etc. for given/random next task.</span>
 <span class="sd">        Also perform a single forward/backward pass,</span>
 <span class="sd">        not yet updating the neural network parameters.</span>
@@ -560,7 +560,7 @@
 
 <div class="viewcode-block" id="SGDEnv.get_default_reward">
 <a class="viewcode-back" href="../../../source/benchmark_docs/sgd.html#dacbench.envs.sgd.SGDEnv.get_default_reward">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_default_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_default_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The default reward function.</span>
 
 <span class="sd">        Args:</span>
@@ -578,7 +578,7 @@
 
 <div class="viewcode-block" id="SGDEnv.get_default_state">
 <a class="viewcode-back" href="../../../source/benchmark_docs/sgd.html#dacbench.envs.sgd.SGDEnv.get_default_state">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_default_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_default_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Default state function.</span>
 
 <span class="sd">        Args:</span>
@@ -605,7 +605,7 @@
 
 <div class="viewcode-block" id="SGDEnv.render">
 <a class="viewcode-back" href="../../../source/benchmark_docs/sgd.html#dacbench.envs.sgd.SGDEnv.render">[docs]</a>
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;human&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;human&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Render progress.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;human&quot;</span><span class="p">:</span>
             <span class="n">epoch</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_step</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_loader</span><span class="p">)</span>
@@ -650,7 +650,7 @@
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-8.0.2. Template is modified version of <a
+8.1.3. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

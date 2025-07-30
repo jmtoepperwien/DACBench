@@ -22,13 +22,13 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../_static/js/index.9ea38e314b9e6d9dab77.js">
 
     <script src="../_static/documentation_options.js?v=f129cdf0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -696,14 +696,14 @@
 <p>As there are many potentially interesting metrics involved in the analysis of DAC methods,
 DACBench includes the possibility to track and store them.</p>
 <p>To log information on an environment, you need a logger object:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dacbench.logger</span> <span class="kn">import</span> <span class="n">Logger</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;example&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;your/path&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>If you want to use any of our tracking wrappers, you can then create a logging module for them:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dacbench.wrappers</span> <span class="kn">import</span> <span class="n">PerformanceTrackingWrapper</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.wrappers</span><span class="w"> </span><span class="kn">import</span> <span class="n">PerformanceTrackingWrapper</span>
 
 <span class="n">performance_logger</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="n">PerformanceTrackingWrapper</span><span class="p">)</span>
 <span class="n">env</span> <span class="o">=</span> <span class="n">PerformanceTrackingWrapper</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">performance_logger</span><span class="p">)</span>
@@ -713,7 +713,7 @@ DACBench includes the possibility to track and store them.</p>
 <p>Now the logger will store information in the specified directory in .jsonl files.
 By adding more wrappers, you will also be provided with more information.
 The stored data can then be loaded into pandas dataframes:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dacbench.logger</span> <span class="kn">import</span> <span class="n">load_logs</span><span class="p">,</span> <span class="n">log2dataframe</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dacbench.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_logs</span><span class="p">,</span> <span class="n">log2dataframe</span>
 
 <span class="n">logs</span> <span class="o">=</span> <span class="n">load_logs</span><span class="p">(</span><span class="s2">&quot;your/path/Performance∂TrackingWrapper.jsonl&quot;</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">log2dataframe</span><span class="p">(</span><span class="n">logs</span><span class="p">)</span>
@@ -1289,7 +1289,7 @@ used in combination with wide=True to reduce NaN values</p></li>
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-8.0.2. Template is modified version of <a
+8.1.3. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>
