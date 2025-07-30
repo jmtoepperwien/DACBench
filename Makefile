@@ -71,7 +71,7 @@ clean: clean-doc clean-build clean-examples
 
 # Build a distribution in ./dist
 build:
-	$(PYTHON) setup.py sdist
+	uv build
 
 doc:
 	$(MAKE) -C ${DOCDIR} docs
@@ -82,7 +82,7 @@ doc:
 # Publish to testpypi
 # Will echo the commands to actually publish to be run to publish to actual PyPi
 # This is done to prevent accidental publishing but provide the same conveniences
-publish: clean-build build
+publish: clean build
 	$(PIP) install twine
 	$(PYTHON) -m twine upload --verbose --repository testpypi ${DIST}/*
 	@echo

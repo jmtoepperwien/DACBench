@@ -19,7 +19,7 @@ def get_other_requirements():
 
 
 setup(
-    version="0.2.1",
+    version="0.3.0",
     packages=find_packages(
         exclude=[
             "tests",

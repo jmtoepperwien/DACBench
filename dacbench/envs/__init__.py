@@ -12,15 +12,15 @@ from dacbench.envs.theory import TheoryEnv
 from dacbench.envs.toysgd import ToySGDEnv, ToySGDInstance
 
 __all__ = [
-    "LubyEnv",
-    "LubyInstance",
-    "luby_gen",
     "FunctionApproximationEnv",
     "FunctionApproximationInstance",
+    "LubyEnv",
+    "LubyInstance",
+    "TheoryEnv",
     #   "FastDownwardEnv",
     "ToySGDEnv",
     "ToySGDInstance",
-    "TheoryEnv",
+    "luby_gen",
 ]
 
 modcma_spec = importlib.util.find_spec("modcma")

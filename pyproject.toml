@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=70", "wheel"]
+requires = ["setuptools>=75.1.0", "wheel", "setuptools_scm>3"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -27,17 +27,18 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
-  "gymnasium==0.29.1",
-  "imageio==2.35.1",
+  "gymnasium<=0.29.1",
+  "imageio~=2.35.1",
   "numpy==1.26.4",
   "pandas==2.2.3",
   "matplotlib==3.9.2",
   "seaborn==0.13.2",
-  "configspace==1.2.0",
+  "configspace~=1.2.1",
   "scikit-learn==1.5.2",
   "scipy==1.14.1", 
   "jupyter==1.0.0",
-  "Pyro4==4.82"]
+  "Pyro4==4.82",
+  "ioh==0.3.17"]
 
 [project.urls]
 Homepage = "https://github.com/automl/DACBench"
