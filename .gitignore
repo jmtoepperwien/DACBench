@@ -35,3 +35,4 @@ uv.lock
 *.whl
 
 .DS_Store
+*uv.lock*
