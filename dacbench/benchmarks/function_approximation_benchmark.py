@@ -82,7 +82,14 @@ class FunctionApproximationBenchmark(AbstractBenchmark):
 
         for key in FUNCTION_APPROXIMATION_DEFAULTS:
             if key not in self.config:
-                self.config[key] = FUNCTION_APPROXIMATION_DEFAULTS[key]
+                if key == "observation_space_args" and "config_space" in self.config:
+                    obs_length = 1 + len(self.config["config_space"]) * 4
+                    self.config[key] = [
+                        np.array([-np.inf for _ in range(obs_length)]),
+                        np.array([np.inf for _ in range(obs_length)]),
+                    ]
+                else:
+                    self.config[key] = FUNCTION_APPROXIMATION_DEFAULTS[key]
 
     def get_environment(self):
         """Return Function Approximation env with current configuration.
@@ -197,6 +204,10 @@ class FunctionApproximationBenchmark(AbstractBenchmark):
                 "Slope (dimension 1)",
                 "Action",
             ]
+            self.config.observation_space_args = [
+                np.array([-np.inf for _ in range(4)]),
+                np.array([np.inf for _ in range(4)]),
+            ]
         if dimension == 2:
             self.config.instance_set_path = "sigmoid_2D3M_train.csv"
             self.config.test_set_path = "sigmoid_2D3M_test.csv"
@@ -219,6 +230,10 @@ class FunctionApproximationBenchmark(AbstractBenchmark):
                 "Slope (dimension 2)",
                 "Action dim 1",
                 "Action dim 2",
+            ]
+            self.config.observation_space_args = [
+                np.array([-np.inf for _ in range(7)]),
+                np.array([np.inf for _ in range(7)]),
             ]
         if dimension == 3:
             self.config.instance_set_path = "sigmoid_3D3M_train.csv"
@@ -249,6 +264,10 @@ class FunctionApproximationBenchmark(AbstractBenchmark):
                 "Action 1",
                 "Action 2",
                 "Action 3",
+            ]
+            self.config.observation_space_args = [
+                np.array([-np.inf for _ in range(10)]),
+                np.array([np.inf for _ in range(10)]),
             ]
         if dimension == 5:
             self.config.instance_set_path = "sigmoid_5D3M_train.csv"
@@ -293,6 +312,10 @@ class FunctionApproximationBenchmark(AbstractBenchmark):
                 "Action 3",
                 "Action 4",
                 "Action 5",
+            ]
+            self.config.observation_space_args = [
+                np.array([-np.inf for _ in range(16)]),
+                np.array([np.inf for _ in range(16)]),
             ]
         self.config.seed = seed
         self.read_instance_set()

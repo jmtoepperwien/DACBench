@@ -190,9 +190,9 @@ class AbstractEnv(ABC, gym.Env):
         if scheme is None:
             scheme = options.get("scheme", self.instance_updates)
         if instance is None:
-            instance = options.get("instance", None)
+            instance = options.get("instance")
         if instance_id is None:
-            instance_id = options.get("instance_id", None)
+            instance_id = options.get("instance_id")
         self.use_next_instance(instance, instance_id, scheme=scheme)
 
     def use_next_instance(self, instance=None, instance_id=None, scheme=None):

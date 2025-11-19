@@ -10,8 +10,8 @@ from dacbench.benchmarks.luby_benchmark import LubyBenchmark
 from dacbench.benchmarks.toysgd_benchmark import ToySGDBenchmark
 
 __all__ = [
-    "LubyBenchmark",
     "FunctionApproximationBenchmark",
+    "LubyBenchmark",
     "ToySGDBenchmark",
     #    "FastDownwardBenchmark",
 ]
@@ -28,7 +28,7 @@ else:
         "please follow the installation guide."
     )
 
-sgd_spec = importlib.util.find_spec("torch")
+sgd_spec = importlib.util.find_spec("torchvision")
 found = sgd_spec is not None
 if found:
     from dacbench.benchmarks.sgd_benchmark import SGDBenchmark

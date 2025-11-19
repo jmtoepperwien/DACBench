@@ -28,3 +28,8 @@ test/*.json
 
 # venvs
 *.lock*
+dist/*
+uv.lock
+*.egg
+*.egg-info/
+*.whl

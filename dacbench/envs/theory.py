@@ -224,11 +224,8 @@ class BinaryProblem:
             locs_x[locs_xprime] = False
             obj = self.get_fitness_after_crossover(xprime, locs_x, locs_xprime)
 
-            if (
-                obj not in (self.fitness, xprime.fitness)
-                or (
-                    not np.array_equal(xprime.data[locs_xprime], self.data[locs_xprime])
-                )
+            if obj not in (self.fitness, xprime.fitness) or (
+                (not np.array_equal(xprime.data[locs_xprime], self.data[locs_xprime]))
                 and (not np.array_equal(self.data[locs_x], xprime.data[locs_x]))
             ):
                 n_evals += 1
