@@ -21,13 +21,13 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
     <script src="../../_static/documentation_options.js?v=f129cdf0"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -261,18 +261,18 @@
   <h1>Source code for dacbench.plotting</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Plotting helper.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="space_sep_upper">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.space_sep_upper">[docs]</a>
-<span class="k">def</span> <span class="nf">space_sep_upper</span><span class="p">(</span><span class="n">column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">space_sep_upper</span><span class="p">(</span><span class="n">column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Separates strings at underscores into headings.</span>
 <span class="sd">    Used to generate labels from logging names.</span>
 
@@ -294,7 +294,7 @@
 
 <div class="viewcode-block" id="generate_global_step">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.generate_global_step">[docs]</a>
-<span class="k">def</span> <span class="nf">generate_global_step</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_global_step</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">x_column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;global_step&quot;</span><span class="p">,</span>
     <span class="n">x_label_columns</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;episode&quot;</span><span class="p">,</span> <span class="s2">&quot;step&quot;</span><span class="p">],</span>
@@ -335,7 +335,7 @@
 
 <div class="viewcode-block" id="add_multi_level_ticks">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.add_multi_level_ticks">[docs]</a>
-<span class="k">def</span> <span class="nf">add_multi_level_ticks</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_multi_level_ticks</span><span class="p">(</span>
     <span class="n">grid</span><span class="p">:</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">,</span> <span class="n">plot_index</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">x_column</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x_label_columns</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Expects a FacedGrid with global_step (x_column) as x-axis</span>
@@ -379,7 +379,7 @@
 
 <div class="viewcode-block" id="plot">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.plot">[docs]</a>
-<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span>
     <span class="n">plot_function</span><span class="p">,</span>
     <span class="n">settings</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
     <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -437,7 +437,7 @@
 
 <div class="viewcode-block" id="plot_performance">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.plot_performance">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_performance</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_performance</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a line plot of the performance over episodes.</span>
@@ -480,7 +480,7 @@
 
 <div class="viewcode-block" id="plot_performance_per_instance">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.plot_performance_per_instance">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_performance_per_instance</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_performance_per_instance</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">args</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create bar plot of the mean performance per instance ordered by the performance.</span>
@@ -528,7 +528,7 @@
 
 <div class="viewcode-block" id="plot_step_time">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.plot_step_time">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_step_time</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_step_time</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span>
     <span class="n">show_global_step</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -598,7 +598,7 @@
 
 <div class="viewcode-block" id="plot_episode_time">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.plot_episode_time">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_episode_time</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_episode_time</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a line plot showing the measured time per episode.</span>
@@ -642,7 +642,7 @@
 
 <div class="viewcode-block" id="plot_action">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.plot_action">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_action</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_action</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span>
     <span class="n">show_global_step</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -697,7 +697,7 @@
 
 <div class="viewcode-block" id="plot_state">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.plot_state">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_state</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_state</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span>
     <span class="n">show_global_step</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -755,7 +755,7 @@
 
 <div class="viewcode-block" id="plot_space">
 <a class="viewcode-back" href="../../source/plotting.html#dacbench.plotting.plot_space">[docs]</a>
-<span class="k">def</span> <span class="nf">plot_space</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_space</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span>
     <span class="n">space_column_name</span><span class="p">,</span>
     <span class="n">show_global_step</span><span class="p">,</span>
@@ -904,7 +904,7 @@
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-8.0.2. Template is modified version of <a
+8.1.3. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

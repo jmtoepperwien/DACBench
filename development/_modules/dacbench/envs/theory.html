@@ -21,13 +21,13 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
     <script src="../../../_static/documentation_options.js?v=f129cdf0"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -261,25 +261,25 @@
   <h1>Source code for dacbench.envs.theory</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Theory Environment.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">uuid</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
 
-<span class="kn">import</span> <span class="nn">gymnasium</span> <span class="k">as</span> <span class="nn">gym</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gymnasium</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gym</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">dacbench</span> <span class="kn">import</span> <span class="n">AbstractEnv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractEnv</span>
 
 
 <div class="viewcode-block" id="BinaryProblem">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem">[docs]</a>
-<span class="k">class</span> <span class="nc">BinaryProblem</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BinaryProblem</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An abstract class for an individual in binary representation.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Init problem.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">rng</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
@@ -289,7 +289,7 @@
 
 <div class="viewcode-block" id="BinaryProblem.initialise_with_fixed_number_of_bits">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.initialise_with_fixed_number_of_bits">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialise_with_fixed_number_of_bits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialise_with_fixed_number_of_bits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Init with given number of bits.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">rng</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
@@ -304,25 +304,25 @@
 
 <div class="viewcode-block" id="BinaryProblem.is_optimal">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.is_optimal">[docs]</a>
-    <span class="k">def</span> <span class="nf">is_optimal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_optimal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get is_optimal flag.&quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="BinaryProblem.get_optimal">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.get_optimal">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_optimal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_optimal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get optimum.&quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="BinaryProblem.eval">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluate fitness.&quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="BinaryProblem.get_fitness_after_flipping">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.get_fitness_after_flipping">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_fitness_after_flipping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_fitness_after_flipping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the change in fitness after flipping the bits at positions locs.</span>
 
 <span class="sd">        Parameters</span>
@@ -340,7 +340,7 @@
 
 <div class="viewcode-block" id="BinaryProblem.get_fitness_after_crossover">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.get_fitness_after_crossover">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_fitness_after_crossover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xprime</span><span class="p">,</span> <span class="n">locs_x</span><span class="p">,</span> <span class="n">locs_xprime</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_fitness_after_crossover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xprime</span><span class="p">,</span> <span class="n">locs_x</span><span class="p">,</span> <span class="n">locs_xprime</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate fitness of the child aftering being crossovered with xprime.</span>
 
 <span class="sd">        Parameters</span>
@@ -362,7 +362,7 @@
 
 <div class="viewcode-block" id="BinaryProblem.flip">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.flip">[docs]</a>
-    <span class="k">def</span> <span class="nf">flip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">flip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Flip the bits at position indicated by locs.</span>
 
 <span class="sd">        Parameters</span>
@@ -383,7 +383,7 @@
 
 <div class="viewcode-block" id="BinaryProblem.combine">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.combine">[docs]</a>
-    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xprime</span><span class="p">,</span> <span class="n">locs_xprime</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xprime</span><span class="p">,</span> <span class="n">locs_xprime</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Combine (crossover) self and xprime by taking xprime&#39;s bits at locs_xprime</span>
 <span class="sd">        and self&#39;s bits at other positions.</span>
 
@@ -409,7 +409,7 @@
 
 <div class="viewcode-block" id="BinaryProblem.mutate">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.mutate">[docs]</a>
-    <span class="k">def</span> <span class="nf">mutate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">n_childs</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">n_childs</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Draw l ~ binomial(n, p), l&gt;0.</span>
 
 <span class="sd">        Generate n_childs children by flipping exactly l bits</span>
@@ -446,7 +446,7 @@
 
 <div class="viewcode-block" id="BinaryProblem.mutate_rls">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.mutate_rls">[docs]</a>
-    <span class="k">def</span> <span class="nf">mutate_rls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mutate_rls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a child by flipping exactly l bits.</span>
 
 <span class="sd">        Returns:</span>
@@ -469,7 +469,7 @@
 
 <div class="viewcode-block" id="BinaryProblem.crossover">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.BinaryProblem.crossover">[docs]</a>
-    <span class="k">def</span> <span class="nf">crossover</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">crossover</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">xprime</span><span class="p">,</span>
         <span class="n">p</span><span class="p">,</span>
@@ -519,11 +519,8 @@
             <span class="n">locs_x</span><span class="p">[</span><span class="n">locs_xprime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_fitness_after_crossover</span><span class="p">(</span><span class="n">xprime</span><span class="p">,</span> <span class="n">locs_x</span><span class="p">,</span> <span class="n">locs_xprime</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="p">(</span>
-                <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span> <span class="n">xprime</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
-                <span class="ow">or</span> <span class="p">(</span>
-                    <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">xprime</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">locs_xprime</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">locs_xprime</span><span class="p">])</span>
-                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span> <span class="n">xprime</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+                <span class="p">(</span><span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">xprime</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">locs_xprime</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">locs_xprime</span><span class="p">]))</span>
                 <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">locs_x</span><span class="p">],</span> <span class="n">xprime</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">locs_x</span><span class="p">]))</span>
             <span class="p">):</span>
                 <span class="n">n_evals</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -544,13 +541,13 @@
 
 <div class="viewcode-block" id="LeadingOne">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.LeadingOne">[docs]</a>
-<span class="k">class</span> <span class="nc">LeadingOne</span><span class="p">(</span><span class="n">BinaryProblem</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LeadingOne</span><span class="p">(</span><span class="n">BinaryProblem</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An individual for LeadingOne problem.</span>
 
 <span class="sd">    The aim is to maximise the number of leading (and consecutive) 1 bits in the string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">initObj</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># noqa: N803</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">initObj</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># noqa: N803</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Make individual.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">rng</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
@@ -565,7 +562,7 @@
 
 <div class="viewcode-block" id="LeadingOne.eval">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.LeadingOne.eval">[docs]</a>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluate fitness.&quot;&quot;&quot;</span>
         <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
@@ -577,21 +574,21 @@
 
 <div class="viewcode-block" id="LeadingOne.is_optimal">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.LeadingOne.is_optimal">[docs]</a>
-    <span class="k">def</span> <span class="nf">is_optimal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_optimal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return is_optimal flag.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">all</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="LeadingOne.get_optimal">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.LeadingOne.get_optimal">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_optimal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_optimal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return optimum.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span></div>
 
 
 <div class="viewcode-block" id="LeadingOne.get_fitness_after_flipping">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.LeadingOne.get_fitness_after_flipping">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_fitness_after_flipping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_fitness_after_flipping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return fitness after flipping.&quot;&quot;&quot;</span>
         <span class="n">min_loc</span> <span class="o">=</span> <span class="n">locs</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">min_loc</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">:</span>
@@ -608,7 +605,7 @@
 
 <div class="viewcode-block" id="LeadingOne.get_fitness_after_crossover">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.LeadingOne.get_fitness_after_crossover">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_fitness_after_crossover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xprime</span><span class="p">,</span> <span class="n">locs_x</span><span class="p">,</span> <span class="n">locs_xprime</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_fitness_after_crossover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xprime</span><span class="p">,</span> <span class="n">locs_x</span><span class="p">,</span> <span class="n">locs_xprime</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return fitness after crossover.&quot;&quot;&quot;</span>
         <span class="n">child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">xprime</span><span class="p">,</span> <span class="n">locs_xprime</span><span class="p">)</span>
         <span class="n">child</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
@@ -623,14 +620,14 @@
 
 <div class="viewcode-block" id="TheoryEnv">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.TheoryEnv">[docs]</a>
-<span class="k">class</span> <span class="nc">TheoryEnv</span><span class="p">(</span><span class="n">AbstractEnv</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TheoryEnv</span><span class="p">(</span><span class="n">AbstractEnv</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Environment for RLS with step size.</span>
 
 <span class="sd">    Current assumption: we only consider (1+1)-RLS,</span>
 <span class="sd">    so there&#39;s only one parameter to tune (r)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">test_env</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">test_env</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize TheoryEnv.</span>
 
 <span class="sd">        Parameters</span>
@@ -719,7 +716,7 @@
 <div class="viewcode-block" id="TheoryEnv.get_obs_domain_from_name">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.TheoryEnv.get_obs_domain_from_name">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_obs_domain_from_name</span><span class="p">(</span><span class="n">var_name</span><span class="p">):</span>  <span class="c1"># noqa: ARG004</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_obs_domain_from_name</span><span class="p">(</span><span class="n">var_name</span><span class="p">):</span>  <span class="c1"># noqa: ARG004</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get default lower and upperbound of a observation variable based on its name.</span>
 
 <span class="sd">        The observation space will then be created</span>
@@ -733,7 +730,7 @@
 
 <div class="viewcode-block" id="TheoryEnv.reset">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.TheoryEnv.reset">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Resets env.</span>
 
 <span class="sd">        Returns:</span>
@@ -784,14 +781,14 @@
 
 <div class="viewcode-block" id="TheoryEnv.get_state">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.TheoryEnv.get_state">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return state.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">f</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_functions</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="TheoryEnv.step">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.TheoryEnv.step">[docs]</a>
-    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute environment step.</span>
 
 <span class="sd">        Parameters</span>
@@ -912,7 +909,7 @@
 
 <div class="viewcode-block" id="TheoryEnv.close">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.TheoryEnv.close">[docs]</a>
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Close Env.</span>
 
 <span class="sd">        No additional cleanup necessary</span>
@@ -928,10 +925,10 @@
 
 <div class="viewcode-block" id="TheoryEnvDiscrete">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.TheoryEnvDiscrete">[docs]</a>
-<span class="k">class</span> <span class="nc">TheoryEnvDiscrete</span><span class="p">(</span><span class="n">TheoryEnv</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TheoryEnvDiscrete</span><span class="p">(</span><span class="n">TheoryEnv</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;RLS environment where the choices of r is discretised.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">test_env</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">test_env</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Init env.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">test_env</span><span class="p">)</span>
         <span class="k">assert</span> <span class="p">(</span>
@@ -948,7 +945,7 @@
 
 <div class="viewcode-block" id="TheoryEnvDiscrete.step">
 <a class="viewcode-back" href="../../../source/benchmark_docs/theory.html#dacbench.envs.theory.TheoryEnvDiscrete.step">[docs]</a>
-    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Take step.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
@@ -984,7 +981,7 @@
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-8.0.2. Template is modified version of <a
+8.1.3. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>

@@ -21,13 +21,13 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2eb4fb78" />
     
   <link rel="preload" as="script" href="../../_static/js/index.9ea38e314b9e6d9dab77.js">
 
     <script src="../../_static/documentation_options.js?v=f129cdf0"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -261,26 +261,26 @@
   <h1>Source code for dacbench.abstract_benchmark</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Abstract Benchmark.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">FunctionType</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionType</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">ConfigSpace</span> <span class="kn">import</span> <span class="n">ConfigurationSpace</span>
-<span class="kn">from</span> <span class="nn">gymnasium</span> <span class="kn">import</span> <span class="n">spaces</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ConfigSpace</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigurationSpace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gymnasium</span><span class="w"> </span><span class="kn">import</span> <span class="n">spaces</span>
 
-<span class="kn">from</span> <span class="nn">dacbench</span> <span class="kn">import</span> <span class="n">wrappers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dacbench</span><span class="w"> </span><span class="kn">import</span> <span class="n">wrappers</span>
 
 
 <div class="viewcode-block" id="AbstractBenchmark">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark">[docs]</a>
-<span class="k">class</span> <span class="nc">AbstractBenchmark</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AbstractBenchmark</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract template for benchmark classes.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">objdict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">objdict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize benchmark class.</span>
 
 <span class="sd">        Parameters</span>
@@ -304,7 +304,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.get_config">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.get_config">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return current configuration.</span>
 
 <span class="sd">        Returns:</span>
@@ -316,7 +316,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.serialize_config">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.serialize_config">[docs]</a>
-    <span class="k">def</span> <span class="nf">serialize_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">serialize_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save configuration to json.</span>
 
 <span class="sd">        Parameters</span>
@@ -370,7 +370,7 @@
 <div class="viewcode-block" id="AbstractBenchmark.from_json">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.from_json">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">json_config</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">json_config</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get config from json dict.&quot;&quot;&quot;</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">objdict</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_config</span><span class="p">))</span>
         <span class="k">if</span> <span class="s2">&quot;config_space&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
@@ -384,7 +384,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.to_json">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.to_json">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write config to json.&quot;&quot;&quot;</span>
         <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialize_config</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span></div>
@@ -392,7 +392,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.save_config">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.save_config">[docs]</a>
-    <span class="k">def</span> <span class="nf">save_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write config to path.&quot;&quot;&quot;</span>
         <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialize_config</span><span class="p">()</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
@@ -401,7 +401,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.jsonify_wrappers">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.jsonify_wrappers">[docs]</a>
-    <span class="k">def</span> <span class="nf">jsonify_wrappers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">jsonify_wrappers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write wrapper description to list.</span>
 
 <span class="sd">        Returns:</span>
@@ -434,7 +434,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.dejson_wrappers">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.dejson_wrappers">[docs]</a>
-    <span class="k">def</span> <span class="nf">dejson_wrappers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrapper_list</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dejson_wrappers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrapper_list</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load wrapper from list.</span>
 
 <span class="sd">        Parameters</span>
@@ -444,7 +444,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wrapper_list</span><span class="p">)):</span>
-            <span class="kn">import</span> <span class="nn">importlib</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
 
             <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">wrappers</span><span class="p">,</span> <span class="n">wrapper_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">arg_descriptions</span> <span class="o">=</span> <span class="n">wrapper_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
@@ -464,7 +464,7 @@
 
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">__import_from</span><span class="p">(</span><span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__import_from</span><span class="p">(</span><span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Imports the class / function / ... with name from module.</span>
 
 <span class="sd">        Parameters</span>
@@ -485,13 +485,13 @@
 <div class="viewcode-block" id="AbstractBenchmark.class_to_str">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.class_to_str">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">class_to_str</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">class_to_str</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get string name from class.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span></div>
 
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">__decorate_config_with_functions</span><span class="p">(</span><span class="n">conf</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__decorate_config_with_functions</span><span class="p">(</span><span class="n">conf</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Replaced the stringified functions with the callable objects.</span>
 
 <span class="sd">        Parameters</span>
@@ -510,7 +510,7 @@
         <span class="k">return</span> <span class="n">conf</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">__stringify_functions</span><span class="p">(</span><span class="n">conf</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__stringify_functions</span><span class="p">(</span><span class="n">conf</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Replaced all callables in the config with a triple</span>
 <span class="sd">        (&#39;function&#39;, module_name, function_name).</span>
 
@@ -532,7 +532,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.space_to_list">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.space_to_list">[docs]</a>
-    <span class="k">def</span> <span class="nf">space_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">space_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Make list from gym space.</span>
 
 <span class="sd">        Parameters</span>
@@ -563,7 +563,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.list_to_space">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.list_to_space">[docs]</a>
-    <span class="k">def</span> <span class="nf">list_to_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space_list</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_to_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space_list</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Make gym space from list.</span>
 
 <span class="sd">        Parameters</span>
@@ -588,7 +588,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.jsonify_dict_space">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.jsonify_dict_space">[docs]</a>
-    <span class="k">def</span> <span class="nf">jsonify_dict_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dict_space</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">jsonify_dict_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dict_space</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Gym spaces to json dict.</span>
 
 <span class="sd">        Parameters</span>
@@ -624,7 +624,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.dictify_json">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.dictify_json">[docs]</a>
-    <span class="k">def</span> <span class="nf">dictify_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dict_list</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dictify_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dict_list</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Json to dict structure for gym spaces.</span>
 
 <span class="sd">        Parameters</span>
@@ -651,7 +651,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.load_config">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.load_config">[docs]</a>
-    <span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">objdict</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">objdict</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load config.</span>
 
 <span class="sd">        Parameters</span>
@@ -704,7 +704,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.read_config_file">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.read_config_file">[docs]</a>
-    <span class="k">def</span> <span class="nf">read_config_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_config_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Read configuration from file.</span>
 
 <span class="sd">        Parameters</span>
@@ -722,7 +722,7 @@
 <div class="viewcode-block" id="AbstractBenchmark.get_environment">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.get_environment">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">get_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Make benchmark environment.</span>
 
 <span class="sd">        Returns:</span>
@@ -734,7 +734,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.set_seed">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.set_seed">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set environment seed.</span>
 
 <span class="sd">        Parameters</span>
@@ -748,7 +748,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.set_action_space">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.set_action_space">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_action_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_action_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change action space.</span>
 
 <span class="sd">        Parameters</span>
@@ -765,7 +765,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.set_observation_space">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.set_observation_space">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_observation_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">data_type</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_observation_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">data_type</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change observation_space.</span>
 
 <span class="sd">        Parameters</span>
@@ -785,7 +785,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.register_wrapper">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.register_wrapper">[docs]</a>
-    <span class="k">def</span> <span class="nf">register_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrap_func</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrap_func</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Register wrapper.</span>
 
 <span class="sd">        Parameters</span>
@@ -802,7 +802,7 @@
 
 <div class="viewcode-block" id="AbstractBenchmark.__eq__">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.AbstractBenchmark.__eq__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check for equality.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">))</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">config</span></div>
 </div>
@@ -812,12 +812,12 @@
 <span class="c1"># This code is taken from https://goodcode.io/articles/python-dict-object/</span>
 <div class="viewcode-block" id="objdict">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict">[docs]</a>
-<span class="k">class</span> <span class="nc">objdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>  <span class="c1"># noqa: N801</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">objdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>  <span class="c1"># noqa: N801</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Modified dict to make config changes more flexible.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="objdict.__getattr__">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__getattr__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
@@ -826,14 +826,14 @@
 
 <div class="viewcode-block" id="objdict.__setattr__">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__setattr__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
 
 
 <div class="viewcode-block" id="objdict.__delattr__">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__delattr__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete attribute.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
@@ -843,14 +843,14 @@
 
 <div class="viewcode-block" id="objdict.copy">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.copy">[docs]</a>
-    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Copy self.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">objdict</span><span class="p">(</span><span class="o">**</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="objdict.__eq__">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__eq__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check for equality.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -867,7 +867,7 @@
 
 <div class="viewcode-block" id="objdict.__ne__">
 <a class="viewcode-back" href="../../source/benchmarks.html#dacbench.abstract_benchmark.objdict.__ne__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check for inequality.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span></div>
 </div>
@@ -900,7 +900,7 @@
     <div class="footer-item">
       <p class="sphinx-version">
 Created using <a href="http://sphinx-doc.org/">Sphinx</a>
-8.0.2. Template is modified version of <a
+8.1.3. Template is modified version of <a
 href="https://pydata-sphinx-theme.readthedocs.io">PyData Sphinx Theme</a>. <br>
 </p>
     </div>
