@@ -111,7 +111,7 @@ class AbstractEnv(ABC, gym.Env):
                         ns = []
                         for a in actions:
                             try:
-                                ns.append(a.upper - a.lower)
+                                ns.append(a.upper - a.lower + 1)
                             except:  # noqa: E722
                                 ns.append(len(a.choices))
                         self.action_space = gym.spaces.MultiDiscrete(np.array(ns))
