@@ -87,10 +87,12 @@ class TheoryBenchmark(AbstractBenchmark):
             ), "ERROR: max_action should not be used for discrete action space"
             self.config.env_class = "TheoryEnvDiscrete"
             n_acts = len(self.config["action_choices"])
-            action = CSH.UniformIntegerHyperparameter(name="", lower=0, upper=n_acts)
+            action = CSH.UniformIntegerHyperparameter(
+                name="", lower=0, upper=n_acts - 1
+            )
         else:
             assert (
-                "action_chocies" not in self.config
+                "action_choices" not in self.config
             ), "ERROR: action_choices is only used for discrete action space"
             assert ("min_action" in self.config) and (  # noqa: PT018
                 "max_action" in self.config
