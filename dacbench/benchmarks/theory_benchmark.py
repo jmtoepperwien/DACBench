@@ -91,9 +91,10 @@ class TheoryBenchmark(AbstractBenchmark):
                 name="", lower=0, upper=n_acts - 1
             )
         else:
-            assert (
-                "action_choices" not in self.config
-            ), "ERROR: action_choices is only used for discrete action space"
+            if "action_choices" not in self.config:
+                raise ValueError(
+                    "WARNING: 'action_choices' is ignored in continuous action spaces."
+                )
             assert ("min_action" in self.config) and (  # noqa: PT018
                 "max_action" in self.config
             ), "ERROR: min_action and max_action must be specified"
