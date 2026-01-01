@@ -14,14 +14,17 @@ class DACBOEnv(AbstractEnv):
         """Init DACBO env."""
         self._env = DEnv(task_ids=config["instance_set"][0], **config)
         self.reset()
-        config["cutoff"] = 1e6
+        config["cutoff"] = float("inf")  # Not used. DACBO handles BO runs internally
         config["observation_space"] = self._env.observation_space
         config["action_space"] = self._env.action_space
         super().__init__(config)
 
     def step(self, action):
         """Takes one env step."""
-        return self._env.step(action)
+        state, reward, terminated, truncated, info = self._env.step(action)
+        if truncated:  # Reset BO loop, select new instance
+            self._env.reset()
+        return state, reward, terminated, truncated, info
 
     def reset(self, seed=None):
         """Resets the internal env."""
