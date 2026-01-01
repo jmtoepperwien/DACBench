@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import dacboenv
 import pandas as pd
 
 from dacbench.abstract_benchmark import AbstractBenchmark, objdict
@@ -12,25 +13,9 @@ from dacbench.envs.dacbo import DACBOEnv
 INFO = {
     "identifier": "DACBO",
     "name": "DACBO",
-    "reward": "DACBO Rewards",
+    "reward": "Incumbent cost",
     "state_description": [
-        "incumbent_change_observation",
-        "trials_passed_observation",
-        "trials_left_observation",
-        "ubr_observation",
-        "modelfit_observation",
-        "dimensions_observation",
-        "continuous_hp_observation",
-        "categorical_hp_observation",
-        "ordinal_hp_observation",
-        "int_hp_observation",
-        "tsp_observation",
-        "knn_entropy_observation",
-        "skewness_observation",
-        "kurtosis_observation",
-        "mean_observation",
-        "std_observation",
-        "variability_observation",
+        obs.name for obs in dacboenv.env.observation.ALL_OBSERVATIONS
     ],
 }
 
