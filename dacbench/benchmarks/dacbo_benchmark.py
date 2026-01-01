@@ -5,7 +5,9 @@ from __future__ import annotations
 from pathlib import Path
 
 import dacboenv
+import numpy as np
 import pandas as pd
+from dacboenv.env.action import AcqParameterActionSpace
 
 from dacbench.abstract_benchmark import AbstractBenchmark, objdict
 from dacbench.envs.dacbo import DACBOEnv
@@ -21,9 +23,14 @@ INFO = {
 
 DACBO_DEFAULTS = objdict(
     {
-        "reward_range": (float("-inf"), float("inf")),
+        "reward_range": [-np.inf, np.inf],
         "seed": 0,
         "instance_set_path": "bbob_2_default.csv",
+        "observation_keys": None,
+        "action_space_class": AcqParameterActionSpace,
+        "action_space_kwargs": None,
+        "reward_keys": None,
+        "inner_seeds": None,
         "benchmark_info": INFO,
     }
 )

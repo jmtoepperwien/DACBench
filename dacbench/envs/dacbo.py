@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import numpy as np
 from dacboenv.dacboenv import DACBOEnv as DEnv
 
 from dacbench.abstract_env import AbstractEnv
@@ -14,7 +15,7 @@ class DACBOEnv(AbstractEnv):
         """Init DACBO env."""
         self._env = DEnv(task_ids=config["instance_set"][0], **config)
         self.reset()
-        config["cutoff"] = float("inf")  # Not used. DACBO handles BO runs internally
+        config["cutoff"] = np.inf  # Not used. DACBO handles BO runs internally
         config["observation_space"] = self._env.observation_space
         config["action_space"] = self._env.action_space
         super().__init__(config)
