@@ -6,7 +6,7 @@ from pathlib import Path
 
 import dacboenv
 import numpy as np
-import pandas as pd
+import yaml
 from dacboenv.env.action import AcqParameterActionSpace
 
 from dacbench.abstract_benchmark import AbstractBenchmark, objdict
@@ -25,12 +25,16 @@ DACBO_DEFAULTS = objdict(
     {
         "reward_range": [-np.inf, np.inf],
         "seed": 0,
-        "instance_set_path": "bbob_2_default.csv",
-        "observation_keys": None,
+        "instance_set_path": "bbob_2_default.yaml",
+        "observation_keys": [
+            "ubr_difference",
+            "acq_value_EI",
+            "acq_value_PI",
+            "previous_param",
+        ],
         "action_space_class": AcqParameterActionSpace,
         "action_space_kwargs": None,
         "reward_keys": None,
-        "inner_seeds": None,
         "benchmark_info": INFO,
     }
 )
@@ -66,9 +70,12 @@ class DACBOBenchmark(AbstractBenchmark):
                 / self.config.instance_set_path
             )
 
-        instance_df = pd.read_csv(path)
+        with open(path) as f:
+            instance_data = yaml.safe_load(f)
+        print(instance_data)
         self.config["instance_set"] = {
-            0: instance_df["task_id"].tolist()
+            0: instance_data["task_ids"]
         }  # Instance selection is handled by the internal env
+        self.config["inner_seeds"] = instance_data.get("inner_seeds", None)
 
         assert len(self.config["instance_set"][0]) > 0, "ERROR: empty instance set"
