@@ -2,15 +2,44 @@
 
 from __future__ import annotations
 
+from importlib.resources import files
 from pathlib import Path
 
 import dacboenv
 import numpy as np
 import yaml
 from dacboenv.env.action import AcqParameterActionSpace
+from omegaconf import OmegaConf
 
 from dacbench.abstract_benchmark import AbstractBenchmark, objdict
 from dacbench.envs.dacbo import DACBOEnv
+
+
+def load_default_optimizer():
+    """Handles dacboenv configs to configure WEI as default."""
+    dacboenv_path = files("dacboenv")
+    base = OmegaConf.load(dacboenv_path / "configs/env/opt/base.yaml")
+    base.dacboenv.optimizer_cfg.smac_cfg.smac_kwargs = None
+    override = OmegaConf.load(
+        dacboenv_path / "configs/env/action/wei_alpha_continuous.yaml"
+    )
+    cfg = OmegaConf.merge(base, override)
+    cfg = OmegaConf.create({"optimizer": cfg.dacboenv.optimizer_cfg})
+
+    def replace_refs(node):
+        if isinstance(node, str):
+            return node.replace("dacboenv.optimizer_cfg", "optimizer")
+        if isinstance(node, dict):
+            return {k: replace_refs(v) for k, v in node.items()}
+        if isinstance(node, list):
+            return [replace_refs(v) for v in node]
+        return node
+
+    cfg = OmegaConf.create(replace_refs(OmegaConf.to_container(cfg, resolve=False)))
+    cfg.outdir = "runs/SMAC-DACBO/${benchmark_id}/${task_id}/${seed}"
+
+    return cfg
+
 
 INFO = {
     "identifier": "DACBO",
@@ -26,6 +55,7 @@ DACBO_DEFAULTS = objdict(
         "reward_range": [-np.inf, np.inf],
         "seed": 0,
         "instance_set_path": "bbob_2_default.yaml",
+        "optimizer_cfg": load_default_optimizer(),
         "observation_keys": [
             "ubr_difference",
             "acq_value_EI",
@@ -33,7 +63,7 @@ DACBO_DEFAULTS = objdict(
             "previous_param",
         ],
         "action_space_class": AcqParameterActionSpace,
-        "action_space_kwargs": None,
+        "action_space_kwargs": {"bounds": [0, 1], "adjustment_type": "continuous"},
         "reward_keys": None,
         "benchmark_info": INFO,
     }
