@@ -64,7 +64,7 @@ DACBO_DEFAULTS = objdict(
         ],
         "action_space_class": AcqParameterActionSpace,
         "action_space_kwargs": {"bounds": [0, 1], "adjustment_type": "continuous"},
-        "reward_keys": None,
+        "reward_keys": ["symlogregret"],
         "benchmark_info": INFO,
     }
 )
