@@ -13,7 +13,7 @@ class DACBOEnv(AbstractEnv):
 
     def __init__(self, config):
         """Init DACBO env."""
-        self._env = DEnv(task_ids=config["instance_set"][0], **config)
+        self._env = DEnv(**config)
         self.reset()
         config[
             "cutoff"

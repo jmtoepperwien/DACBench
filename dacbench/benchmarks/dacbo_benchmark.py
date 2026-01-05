@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from importlib.resources import files
+from itertools import product
 from pathlib import Path
 
 import dacboenv
@@ -110,9 +111,14 @@ class DACBOBenchmark(AbstractBenchmark):
         with open(path) as f:
             instance_data = yaml.safe_load(f)
         print(instance_data)
-        self.config["instance_set"] = {
-            0: instance_data["task_ids"]
-        }  # Instance selection is handled by the internal env
+        self.config["task_ids"] = instance_data["task_ids"]
         self.config["inner_seeds"] = instance_data.get("inner_seeds", None)
+        self.config["instance_set"] = dict(
+            enumerate(
+                product(
+                    instance_data.get("inner_seeds", None), instance_data["task_ids"]
+                )
+            )
+        )  # Not used. Instance selection is handled by the internal env
 
-        assert len(self.config["instance_set"][0]) > 0, "ERROR: empty instance set"
+        assert len(self.config["instance_set"]) > 0, "ERROR: empty instance set"
