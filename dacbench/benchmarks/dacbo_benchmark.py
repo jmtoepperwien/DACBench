@@ -44,10 +44,17 @@ def load_default_optimizer():
 INFO = {
     "identifier": "DACBO",
     "name": "DACBO",
-    "reward": "Incumbent cost",
-    "state_description": [
+    "reward": f"""Default: [symlogregret]. Other options: {[
+        rew.name for rew in dacboenv.env.reward.ALL_REWARDS
+    ]}""",
+    "state_description": f"""Default: {[
+            "ubr_difference",
+            "acq_value_EI",
+            "acq_value_PI",
+            "previous_param",
+        ]}. Other options: {[
         obs.name for obs in dacboenv.env.observation.ALL_OBSERVATIONS
-    ],
+    ]}""",
 }
 
 DACBO_DEFAULTS = objdict(
