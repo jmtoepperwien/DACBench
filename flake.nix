@@ -48,6 +48,7 @@
 
             shellHook = ''
               unset PYTHONPATH
+              export UV_NO_MANAGED_PYTHON=1
               uv sync
               . .venv/bin/activate
             '';
