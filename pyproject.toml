@@ -38,7 +38,7 @@ dependencies = [
   "scipy >= 1.14.0, <= 1.17",
   "jupyter ~= 1.0",
   "Pyro4 >= 4.70, < 5",
-  "ioh >= 0.3"]
+  "ioh >= 0.3, <= 0.4"]
 
 [project.urls]
 Homepage = "https://github.com/automl/DACBench"
@@ -65,10 +65,10 @@ docs = [
     "automl-sphinx-theme==0.2.0"
 ]
 all = [
-  "ioh==0.3.17", 
+  "ioh >= 0.3, <= 0.4",
   "modcma==1.0.8",
-  "torchvision==0.19.1",
-  "torch==2.4.1",
+  "torchvision >= 0.19, <= 0.25",
+  "torch >= 2.4, <= 2.10",
   "uuid"
 ]
 
