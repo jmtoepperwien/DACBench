@@ -4,12 +4,13 @@
     "config:recommended",
     ":pinOnlyDevDependencies",
     ":labels(bot,renovate)",
-    ":automergeType(development)",
+    ":automergeBranch(development)",
     ":automergeMinor",
     ":semanticCommits",
     ":semanticPrefixChore",
     ":dependencyDashboard",
-    ":group:recommended"
+    "group:recommended",
+    "group:allNonMajor",
   ],
   "baseBranches": ["development"],
   "lockFileMaintenance": true
