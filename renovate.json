@@ -13,5 +13,6 @@
     "group:allNonMajor",
   ],
   "baseBranches": ["development"],
-  "lockFileMaintenance": true
+  "lockFileMaintenance": true,
+  "rangeStrategy": "widen"
 }
