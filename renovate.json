@@ -14,5 +14,10 @@
   ],
   "baseBranches": ["development"],
   "lockFileMaintenance": true,
-  "rangeStrategy": "widen"
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["*"],
+      "rangeStrategy": "widen"
+    }
+  ]
 }
