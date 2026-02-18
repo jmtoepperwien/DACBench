@@ -3,8 +3,7 @@ on:
   pull_request:
 
 jobs:
-  call-existing-ci:
+  call-workflow-pytest:
     if: ${{ github.actor == 'dependabot[bot]' }}
+    uses: ./.github/workflows/pytest.yml@main # Path to your existing CI file
     secrets: inherit # This passes secrets to the called workflow
-    steps:
-      - uses: ./.github/workflows/pytest.yml # Path to your existing CI file
