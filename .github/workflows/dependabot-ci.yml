@@ -7,4 +7,4 @@ jobs:
     if: ${{ github.actor == 'dependabot[bot]' }}
     secrets: inherit # This passes secrets to the called workflow
     steps:
-      uses: ./.github/workflows/pytest.yml # Path to your existing CI file
+      - uses: ./.github/workflows/pytest.yml # Path to your existing CI file
